@@ -1,0 +1,15 @@
+<h1><%= "Editar Usuario #{current_user.username}" %></h1>
+<%= form_for current_user do |f| %>
+  <%= f.label :name, "Nombre:"%><br>
+  <%= f.text_field :name, placeholder: "nombre completo" %>
+  <% if current_user.errors[:name] %>
+    <%= current_user.errors[:name].first %>
+  <% end %><br><br>
+  <%= f.label :email, "E-mail:" %><br>
+  <%= f.email_field :email %>
+  <% if current_user.errors[:email] %>
+    <%= current_user.errors.inspect %>
+  <% end %><br><br>
+  <%= f.submit "Guardar Cambios" %>
+<%end%><br><br>
+<%=link_to "dashboard", :root %>
