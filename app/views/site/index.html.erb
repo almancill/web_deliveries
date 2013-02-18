@@ -1,12 +1,26 @@
-<div id="login_container" name="login_container">
-  <% if flash[:error] %>
-    <%= flash[:error]%>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "site", :media => "all" %>
+<% end %>
+
+<% if flash[:error] %>
+    <p class="error"><%= flash[:error]%></p>
   <% end %>
+
+<div id="login_container" name="login_container">
   <%=form_tag sessions_path, id: "session-create-form", name: "session-create-form" do%>
-    <%= label_tag :username, "Usuario:"%><br>
-    <%= text_field_tag :username %><br><br>
-    <%= label_tag :password, "Contraseña:"%><br>
-    <%= password_field_tag :password %><br><br>
-    <%= submit_tag "Iniciar Sesión", id: "login", name: "login" %>
+    <p align="center"><%= image_tag 'logo.png', size:'123x62'%></p>
+    <p>
+      <%= label_tag :username, "Usuario:"%>
+      <br>
+      <%= text_field_tag :username %>
+    </p>
+    <p>
+      <%= label_tag :password, "Contraseña:"%>
+      <br>
+      <%= password_field_tag :password %>
+    </p>
+    <p>
+      <%= submit_tag "Iniciar Sesión", id: "login", name: "login" %>
+    </p>
   <%end%>
 </div>
