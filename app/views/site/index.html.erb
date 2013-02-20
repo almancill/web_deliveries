@@ -4,7 +4,7 @@
 
 <% if flash[:error] %>
     <p class="error"><%= flash[:error]%></p>
-  <% end %>
+<% end %>
 
 <div id="login_container" name="login_container">
   <%=form_tag sessions_path, id: "session-create-form", name: "session-create-form" do%>

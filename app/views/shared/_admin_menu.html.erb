@@ -1,0 +1,6 @@
+<ul>
+	<li><%= link_to 'Inicio',:root %></li>
+	<% if current_user.admin %>
+		<%= link_to 'Reportes', '#' %>
+	<% end %>
+</ul>
