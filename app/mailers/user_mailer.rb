@@ -6,9 +6,8 @@ class UserMailer < ActionMailer::Base
   #
   #   en.user_mailer.sign_up.subject
   #
-  def sign_up
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def sign_up(user)
+    @user = user
+    mail(to: user.email, subject: 'Credenciales del Usuario')
   end
 end

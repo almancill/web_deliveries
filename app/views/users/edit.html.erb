@@ -8,7 +8,7 @@
   <%= f.label :email, "E-mail:" %><br>
   <%= f.email_field :email %>
   <% if current_user.errors[:email] %>
-    <%= current_user.errors.inspect %>
+    <%= current_user.errors[:email].first %>
   <% end %><br><br>
   <%= f.submit "Guardar Cambios" %>
 <%end%><br><br>

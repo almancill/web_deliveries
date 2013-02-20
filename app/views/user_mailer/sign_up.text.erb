@@ -1,3 +1,15 @@
-UserMailer#sign_up
-
-<%= @greeting %>, find me in app/views/app/views/user_mailer/sign_up.text.erb
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Se le agregado una cuenta a Domi Flash <%= @user.name %></h1>
+    <p>
+      Sus credenciales son las siguientes: <br/>
+      Usuario: <%= @user.username %> <br/>
+      Su Contraseña temporal es: <%= @user.password %> <br/>
+      Recomendamos cambiarla a través de la opción Cambiar Contraseña.
+    </p>
+  </body>
+</html>
