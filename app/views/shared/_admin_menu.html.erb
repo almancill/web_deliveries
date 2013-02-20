@@ -8,9 +8,9 @@
 	
 	<% if current_user.admin %>
 		<% if page == 1 %>
-			<li><%= link_to 'Usuarios', '#', id: 'current' %></li>
+			<li><%= link_to 'Usuarios del Sistema', :users, id: 'current' %></li>
 		<% else %>
-			<li><%= link_to 'Usuarios', '#' %></li>
+			<li><%= link_to 'Usuarios del Sistema', :users %></li>
 		<% end %>
 		
 		<% if page == 2 %>

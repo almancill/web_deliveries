@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   skip_before_filter :require_admin, only: [:edit, :update]
 
   def index
-    @users = User.all
+    @users = User.paginate(per_page: 15, page: params[:page])
   end
 
   def new
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(create_user_params)
     if @user.save
-      redirect_to :root, notice: "usuario #{@user.username} #{@user.password} fue registrado"
+      redirect_to :users, notice: "usuario #{@user.username} #{@user.password} fue registrado"
     else
       render 'new'
     end
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    render nothing: true
+    redirect_to :users, notice: 'Usuario Eliminado'
   end
 
   private

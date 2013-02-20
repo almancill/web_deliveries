@@ -1,0 +1,23 @@
+<table width="870" border="0" align="center" cellpadding="5" cellspacing="0" id="news-list" class="pretty">
+	<thead>
+		<tr>
+			<th width="16" scope="col">&nbsp;</th>
+			<th width="240" scope="col">Nombre del Usuario</th>
+			<th width="180" scope="col">Usuario</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |u| %>
+			<tr class="item_list">
+				<td width="16">
+					<% if !u.admin %>
+						<%= link_to image_tag("delete.png",size:"16x16"), user_path(u) , confirm: "¿Esta seguro de eliminar el Usuario?", method: "DELETE" %>
+					<% end %>
+				</td>
+				<td width="240"><%= u.name %></td>
+				<td width="180"><%= u.username %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= will_paginate @users, previous_label: "Anterior", next_label: "Siguiente" %>
