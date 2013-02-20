@@ -4,7 +4,7 @@
 		<%= render 'shared/admin_header' %>
 	</div>
 	<div id="navcontainer">
-		<%= render 'shared/admin_menu' %>
+		<%= render 'shared/admin_menu', page: 0 %>
 	</div>
 
 	<div id="content">
@@ -18,12 +18,14 @@
 		<% end %>
 		<h2>Acciones</h2>
 		<% if current_user.admin %>
-		  <p><%= link_to 'Crear usuario', new_user_path %><p>
+		  <p><%= link_to 'Crear Usuario del Sistema', new_user_path %><p>
 		<% end %>
-		<p><%= link_to 'Crear domicilio', '#' %><p>
+		<p><%= link_to 'Crear Domicilio', '#' %><p>
 		<h2>Ver</h2>
-		<p><%= link_to 'Lista usuarios', users_path %><p>
-		<p><%= link_to 'Lista domicilios', '#' %><p>
+		<% if current_user.admin %>
+			<p><%= link_to 'Lista de Usuarios del Sistema', users_path %><p>
+		<% end %>
+		<p><%= link_to 'Lista de Domicilios', '#' %><p>
 		<h2>Configuración</h2>
 		<p><%= link_to 'Editar', edit_user_path(current_user) %><p>
 		<p><%= link_to 'Logout', :logout, method: :delete %><p>

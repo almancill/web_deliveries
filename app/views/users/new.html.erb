@@ -1,20 +1,29 @@
-<h1>Nuevo Usuario</h1>
-<%= form_for @user do |f| %>
-  <%= f.label :name, "Nombre:"%><br>
-  <%= f.text_field :name, placeholder: "nombre completo" %>
-  <% if @user.errors[:name] %>
-    <%= @user.errors[:name].first %>
-  <% end %><br><br>
-  <%= f.label :username, "Nombre de Usuario:" %><br>
-  <%= f.text_field :username %>
-  <% if @user.errors[:username] %>
-    <%= @user.errors[:username].first %>
-  <% end %><br><br>
-  <%= f.label :email, "E-mail:" %><br>
-  <%= f.email_field :email %>
-  <% if @user.errors[:email] %>
-    <%= @user.errors[:email].first %>
-  <% end %><br><br>
-  <%= f.submit "Registrar Usuario" %>
-<%end%><br><br>
-<%=link_to "dashboard", :root %>
+<div id="container">
+  <%= render 'shared/admin_login_info' %>
+  <div id="header">
+    <%= render 'shared/admin_header' %>
+  </div>
+  <div id="navcontainer">
+    <%= render 'shared/admin_menu', page: 1 %>
+  </div>
+
+  <div id="content">
+    <h1>Nuevo Usuario</h1>
+    <%= form_for @user do |f| %>
+      <%= f.text_field :name, placeholder: 'Nombre Completo' %>
+      <% if @user.errors[:name] %>
+        <%= @user.errors[:name].first %>
+      <% end %><br><br>
+      <%= f.text_field :username, placeholder: 'Usuario' %>
+      <% if @user.errors[:username] %>
+        <%= @user.errors[:username].first %>
+      <% end %><br><br>
+      <%= f.email_field :email , placeholder: 'Email' %>
+      <% if @user.errors[:email] %>
+        <%= @user.errors[:email].first %>
+      <% end %><br><br>
+      <%= f.submit "Registrar Usuario" %>
+    <% end %><br><br>
+  </div>
+</div>
+

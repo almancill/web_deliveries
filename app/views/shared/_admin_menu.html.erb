@@ -1,6 +1,22 @@
 <ul>
-	<li><%= link_to 'Inicio',:root %></li>
+	<% #p page %>
+	<% if page == 0 %> 
+		<li><%= link_to 'Inicio', :root, id: 'current' %></li>
+	<% else %>
+		<li><%= link_to 'Inicio', :root %></li>
+	<% end %> 
+	
 	<% if current_user.admin %>
-		<%= link_to 'Reportes', '#' %>
+		<% if page == 1 %>
+			<li><%= link_to 'Usuarios', '#', id: 'current' %></li>
+		<% else %>
+			<li><%= link_to 'Usuarios', '#' %></li>
+		<% end %>
+		
+		<% if page == 2 %>
+			<li><%= link_to 'Reportes', '#', id: 'current' %></li>
+		<% else %>
+			<li><%= link_to 'Reportes', '#' %></li>
+		<% end %>
 	<% end %>
 </ul>
