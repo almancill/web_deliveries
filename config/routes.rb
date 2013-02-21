@@ -1,5 +1,15 @@
 WebDeliveries::Application.routes.draw do
 
+  get "customers/index"
+
+  get "customers/new"
+
+  get "customers/create"
+
+  get "customers/edit"
+
+  get "customers/update"
+
   root to: 'site#index'
 
   #Auth paths
