@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def  update
     if current_user.update_attributes(update_user_params)
-      redirect_to :root, notice: "Usuario editado satisfactoriamente"
+      redirect_to :root, notice: "Usuario Editado Satisfactoriamente"
     else
       render 'edit'
     end

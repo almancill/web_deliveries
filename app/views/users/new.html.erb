@@ -22,7 +22,9 @@
       <% if @user.errors[:email] %>
         <%= @user.errors[:email].first %>
       <% end %><br><br>
-      <%= f.submit "Registrar Usuario" %>
+      <%= f.label :admin, 'Administrador' %>
+      <%= f.check_box :admin %><br><br>
+    <%= f.submit "Registrar Usuario" %>
     <% end %><br><br>
   </div>
 </div>
