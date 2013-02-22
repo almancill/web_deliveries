@@ -1,0 +1,21 @@
+<table width="870" border="0" align="center" cellpadding="5" cellspacing="0" id="news-list" class="pretty">
+	<thead>
+		<tr>
+			<th width="16" scope="col">&nbsp;</th>
+			<th width="240" scope="col">Nombre del Cliente</th>
+			<th width="180" scope="col">Email</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @customers.each_index do |c| %>
+			<tr class="item_list">
+				<td width="16">
+					<%= link_to image_tag("edit.png",size:"16x16"), edit_customer_path(c) %>
+				</td>
+				<td width="240"><%= c.name %></td>
+				<td width="180"><%= c.email %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= will_paginate customer, previous_label: "Anterior", next_label: "Siguiente" %>

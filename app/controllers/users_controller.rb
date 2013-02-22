@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(create_user_params)
     if @user.save
-      redirect_to :users, notice: "usuario #{@user.username} #{@user.password} fue registrado"
+      redirect_to :users, notice: "El Usuario #{@user.username} fue Registrado"
     else
       render 'new'
     end

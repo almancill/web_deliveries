@@ -1,6 +1,8 @@
 #Encoding: utf-8
 class Customer < ActiveRecord::Base
 
+  default_scope{order('name ASC')}
+
   #Validations
   validates :name, :escaped_name, presence: true
   validates :name, :email uniqueness: true
