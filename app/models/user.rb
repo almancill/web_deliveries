@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  default_scope {order('id ASC')}
+
   #Accessors (Virtual attributes)
   attr_accessor :password, :password_confirmation
 
