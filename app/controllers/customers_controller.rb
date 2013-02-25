@@ -1,4 +1,6 @@
 class CustomersController < ApplicationController
+  before_filter :find_customer, only:[:show, :edit, :update]
+
   def index
     @customers = Customer.paginate(per_page: 15, page: params[:page])
   end
@@ -16,12 +18,13 @@ class CustomersController < ApplicationController
     end 
   end
 
+  def show
+  end
+
   def edit
-    @customer = Customer.find(params[:id])
   end
 
   def update
-    @customer = Customer.find(params[:id])
     if @customer.update_attributes(customer_params)
       redirect_to customers_path, notice: 'Usuario Editado Satisfactoriamente'
     else
@@ -32,5 +35,9 @@ class CustomersController < ApplicationController
   private
   def customer_params
     params.require(:customer).permit(:name, :email)
+  end
+  
+  def find_customer
+    @customer = Customer.find(params[:id])
   end
 end
