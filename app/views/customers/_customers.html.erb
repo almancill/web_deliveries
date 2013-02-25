@@ -7,7 +7,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @customers.each_index do |c| %>
+		<% @customers.each do |c| %>
 			<tr class="item_list">
 				<td width="16">
 					<%= link_to image_tag("edit.png",size:"16x16"), edit_customer_path(c) %>

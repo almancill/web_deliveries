@@ -6,7 +6,7 @@ class Customer < ActiveRecord::Base
   #Validations
   validates :name, :escaped_name, presence: true
   validates :email, uniqueness: true
-  validates :email, format: { with: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/}
+  validates :email, format: { with: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/}, allow_blank: true
 
 
   #Callbacks
@@ -14,7 +14,7 @@ class Customer < ActiveRecord::Base
 
   #Methods
   def format_attributes
-    self.name.strip.squeeze(" ").titleize!
+    self.name = self.name.strip.squeeze(" ").titleize
     self.email.strip.downcase! if self.email
     self.escaped_name = self.name.gsub("&","y")
     self.escaped_name = self.escaped_name.gsub(/[^0-9a-zA-ZáéíóúÁÉÍÓÚÑñ'\s]/,"")
