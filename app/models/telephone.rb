@@ -1,4 +1,7 @@
 class Telephone < ActiveRecord::Base
   belongs_to :customer
-  attr_accessible :number
+  
+  #Validations
+  validates :number, numericality: true, presence: true
+
 end
