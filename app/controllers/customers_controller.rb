@@ -21,6 +21,7 @@ class CustomersController < ApplicationController
   end
 
   def update
+    @customer = Customer.find(params[:id])
     if @customer.update_attributes(customer_params)
       redirect_to customers_path, notice: 'Usuario Editado Satisfactoriamente'
     else
