@@ -1,14 +1,26 @@
-<h1><%= "Editar Usuario #{current_user.username}" %></h1>
-<%= form_for current_user do |f| %>
-  <%= f.label :name, "Nombre:"%><br>
-  <%= f.text_field :name, placeholder: "nombre completo" %>
-  <% if current_user.errors[:name] %>
-    <%= current_user.errors[:name].first %>
-  <% end %><br><br>
-  <%= f.label :email, "E-mail:" %><br>
-  <%= f.email_field :email %>
-  <% if current_user.errors[:email] %>
-    <%= current_user.errors[:email].first %>
-  <% end %><br><br>
-  <%= f.submit "Guardar Cambios" %>
-<%end%><br><br>
+<div id="container">
+  <%= render 'shared/admin_login_info' %>
+  <div id="header">
+    <%= render 'shared/admin_header' %>
+  </div>
+  <div id="navcontainer">
+    <%= render 'shared/admin_menu', page: 3 %>
+  </div>
+  <div id="content">
+    <h1><%= "Editar Usuario #{current_user.username}" %></h1>
+    <%= form_for current_user do |f| %>
+      <%= f.label :name, "Nombre:"%><br>
+      <%= f.text_field :name, placeholder: "nombre completo" %>
+      <% if current_user.errors[:name] %>
+        <%= current_user.errors[:name].first %>
+      <% end %><br><br>
+      <%= f.label :email, "E-mail:" %><br>
+      <%= f.email_field :email %>
+      <% if current_user.errors[:email] %>
+        <%= current_user.errors[:email].first %>
+      <% end %><br><br>
+      <%= f.submit "Guardar Cambios" %>
+    <%end%><br><br>    
+  </div>
+</div>
+

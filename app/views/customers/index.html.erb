@@ -11,6 +11,9 @@
 		<% if flash[:notice]%>
 			<p class="done"> <%= flash[:notice]%></p>
 		<% end %>
+		<%= form_tag('#') do %>
+			<p><%= link_to 'Nuevo Cliente', new_customer_path, class: "button"%></p>
+		<% end %>
 		<div id="customers">
 			<%= render 'customers' %>
 		</div>
