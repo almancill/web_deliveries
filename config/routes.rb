@@ -9,4 +9,5 @@ WebDeliveries::Application.routes.draw do
   resources :users
   resources :sessions, only: :create
   resources :customers
+  resources :telephones
 end

@@ -1,3 +1,9 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'jquery-ui', :media => 'all' %>
+  <%= javascript_include_tag 'jquery-ui' %>
+  <%= javascript_include_tag 'jquery-validate' %>
+<% end %>
+
 <div id="container">
 	<%= render 'shared/admin_login_info' %>
 	<div id="header">
@@ -19,21 +25,25 @@
 		<h2>Email del Cliente</h2>
 		<h3><%= @customer.email %></h3>
 
-		<%= form_tag '#' do %>
-			<p><%= link_to 'Agregar Telefono', '#', class: "button"%></p>
-		<% end %>
+		<%= button_tag 'Agregar Teléfono', type: 'button', id: 'add-telephone-button', class: 'button' %>
 
 		<div id='telephones'>
-		
 		</div>
 
-		<%= form_tag '#' do %>
-			<p><%= link_to 'Agregar Dirección', '#', class: "button"%></p>
-		<% end %>
+		<%= button_tag 'Agregar Dirección', class: 'button' %>
 
 		<div id='address'>
-		
 		</div>
 
+		<div id='new-telephone-form' class='hide'>
+			<h2>Nuevo Teléfono</h2>
+			<%= form_for @telephone do |f| %>
+				<%= f.hidden_field :customer_id %>
+				<%= f.text_field :number, placeholder: 'Número Telefónico', class: 'required' %>
+			<% end %>
+		</div>
+
+		<div id='new-address-form'>
+		</div>
 	</div>
 </div>

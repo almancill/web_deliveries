@@ -1,6 +1,8 @@
 #Encoding: utf-8
 class Customer < ActiveRecord::Base
 
+  has_many :telephones
+
   default_scope{order('name ASC')}
 
   #Validations

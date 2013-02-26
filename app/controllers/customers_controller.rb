@@ -19,6 +19,7 @@ class CustomersController < ApplicationController
   end
 
   def show
+    @telephone = @customer.telephones.new
   end
 
   def edit
