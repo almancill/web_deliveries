@@ -1,13 +1,4 @@
 WebDeliveries::Application.routes.draw do
-
-  get "telephones/create"
-
-  get "telephones/edit"
-
-  get "telephones/update"
-
-  get "telephones/destroy"
-
   root to: 'site#index'
 
   #Auth paths

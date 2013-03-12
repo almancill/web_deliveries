@@ -1,5 +1,6 @@
 class TelephonesController < ApplicationController
   def create
+  	p params
   end
 
   def edit
