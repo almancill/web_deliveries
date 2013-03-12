@@ -22,8 +22,6 @@ $(document).ready(function(){
     }
   });
   
-
-
   $('#add-telephone-button').click(function() {
         $( '#new-telephone-form' ).dialog('open');
   });
