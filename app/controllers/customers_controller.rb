@@ -20,6 +20,7 @@ class CustomersController < ApplicationController
 
   def show
     @telephone = @customer.telephones.new
+    @telephones = @customer.telephones
   end
 
   def edit

@@ -27,8 +27,8 @@
 		<h3><%= @customer.email %></h3>
 
 		<%= button_tag 'Agregar Teléfono', type: 'button', id: 'add-telephone-button', class: 'button' %>
-
 		<div id='telephones'>
+			<%= render 'telephones' %>
 		</div>
 
 		<%= button_tag 'Agregar Dirección', class: 'button' %>
@@ -40,7 +40,7 @@
 			<h2>Nuevo Teléfono</h2>
 			<%= form_for @telephone do |f| %>
 				<%= f.hidden_field :customer_id %>
-				<%= f.text_field :number, placeholder: 'Número Telefónico', class: 'required' %>
+				<%= f.text_field :number, placeholder: 'Número Telefónico' %>
 			<% end %>
 		</div>
 

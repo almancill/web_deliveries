@@ -2,6 +2,7 @@
 	<thead>
 		<tr>
 			<th width="16" scope="col">&nbsp;</th>
+			<th width="16" scope="col">&nbsp;</th>
 			<th width="240" scope="col">Número</th>
 		</tr>
 	</thead>
@@ -10,6 +11,9 @@
 			<tr class="item_list">
 				<td width="16">
 					<%= link_to image_tag("edit.png",size:"16x16"), '#' %>
+				</td>
+				<td width="16">
+					<%= link_to image_tag("delete.png",size:"16x16"), t, method: :delete, confirm: "¿Estas seguro que desea eliminar este Número?"%>
 				</td>
 				<td width="240"><%= t.number %></td>
 			</tr>
