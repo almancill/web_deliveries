@@ -45,6 +45,16 @@
 		</div>
 
 		<div id='new-address-form'>
+		
 		</div>
+
+		<div id='edit-telephone-form' class='hide'>
+			<h2>Editar Teléfono</h2>
+			<%= form_tag '/telephones', id: 'edit_telephone', method: :put do %>
+				<%= hidden_field_tag 'edit_telephone[id]', '' %>
+				<%= text_field_tag 'edit_telephone[number]' %>
+			<% end %>
+		</div>
+
 	</div>
 </div>

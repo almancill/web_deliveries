@@ -1,13 +1,18 @@
 class TelephonesController < ApplicationController
-  before_filter 
+  before_filter :find_telephone, only: [:destroy]
 
   def create
     if request.xhr?
-      @telephone = Telephone.new(telephone_params)
-      if @telephone.save
-        head :created
-      else
-        head :unprocessable_entity
+      parameters = telephone_params
+      @telephone = Telephone.new(parameters)
+      @telephones = Customer.find_by_id(parameters.slice(:customer_id)[:customer_id]).telephones
+      
+      respond_to do |format|
+        if @telephone.save
+          format.json {render json: @telephone.to_json, status: :created}
+        else
+          format.json {render json: @telephone.errors, status: :unprocessable_entity}
+        end
       end
     end
   end
@@ -16,17 +21,21 @@ class TelephonesController < ApplicationController
   end
 
   def update
+    if request.xhr?
+      p 'LOS PARAMETROS SON!!!!!!'
+      p params
+    end
   end
 
   def destroy
     c = @telephone.customer
     @telephone.destroy
-    redirect_to c, notice: 'Telefono Eliminado Satisfactoriamente'
+    redirect_to customer_path(c), notice: 'Telefono Eliminado Satisfactoriamente'
   end
 
   private
   def telephone_params
-    params.require(:telephone).permit(:customer_id, :number, :username, :admin)
+    params.require(:telephone).permit(:customer_id, :number)
   end
 
   def telephone_get_params
