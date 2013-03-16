@@ -7,6 +7,10 @@ WebDeliveries::Application.routes.draw do
   #Restful routes
   resources :users
   resources :sessions, only: :create
-  resources :customers
+  resources :customers do
+  	resources :addresses
+  end
   resources :telephones
+  resources :addresses
+
 end

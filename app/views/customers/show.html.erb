@@ -31,9 +31,10 @@
 			<%= render 'telephones' %>
 		</div>
 
-		<%= button_tag 'Agregar Dirección', class: 'button' %>
+		<%= button_tag 'Agregar Dirección', type: 'button', id: 'add-address-button', class: 'button' %>
 
-		<div id='address'>
+		<div id='addresses'>
+			<%= render 'addresses' %>
 		</div>
 
 		<div id='new-telephone-form' class='hide'>
@@ -52,12 +53,20 @@
 			<% end %>
 		</div>
 
-		<div id='new-address-form'>
-			<h2>Nueva Dirección</h2>	
+		<div id='new-address-form' class='hide'>
+			<h2>Nueva Dirección</h2>
+			<%= form_for @address do |f| %>
+				<%= f.hidden_field :customer_id %>
+				<%= f.text_field :value, placeholder: 'Dirección' %>
+			<% end %>	
 		</div>
 
-		<div id='edit-address-form'>
+		<div id='edit-address-form' class='hide'>
 			<h2>Editar Dirección</h2>
+			<%= form_tag '/addresses', id: 'edit_address', method: :put do %>
+				<%= hidden_field_tag 'edit_address[id]' %>
+				<%= text_field_tag 'edit_address[value]' %>
+			<% end %>
 		</div>		
 	</div>
 </div>

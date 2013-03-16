@@ -10,7 +10,7 @@
 		<% @telephones.each do |t| %>
 			<tr class='item_list' >
 				<td width="16">
-					<%= link_to image_tag("edit.png",size:"16x16"), '#', class: 'edit-telephone', id: 'edit_'+t.id.to_s %>
+					<%= link_to image_tag("edit.png",size:"16x16"), '#', class: 'edit-telephone', id: 'edit-telephone_'+t.id.to_s %>
 				</td>
 				<td width="16">
 					<%= link_to image_tag("delete.png",size:"16x16"), t, method: :delete, remote: true, class: 'delete-telephone', confirm: '¿Esta seguro que desea eliminar el número?'  %>

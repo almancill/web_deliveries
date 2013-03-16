@@ -10,7 +10,7 @@ class TelephonesController < ApplicationController
         if @telephone.save
           format.json {render json: @telephone.to_json, status: :created}
         else
-          format.json {render json: @telephone.errors, status: :unprocessable_entity}
+          format.json {render json: @telephone.errors.to_json, status: :unprocessable_entity}
         end
       end
     end
@@ -25,7 +25,7 @@ class TelephonesController < ApplicationController
       @telephone = Telephone.find(parameters['id'])
 
       respond_to do |format|
-        if @telephone.update_attributes(parameters['edit_telephone'])
+        if @telephone.update_attributes(parameters[:edit_telephone])
           format.json {render json: @telephone, status: :ok}
         else
           format.json {render json: @telephone.errors, status: :unprocessable_entity}
