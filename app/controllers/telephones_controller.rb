@@ -1,5 +1,4 @@
 class TelephonesController < ApplicationController
-  before_filter :find_telephone, only: [:destroy]
 
   def create
     if request.xhr?
@@ -22,18 +21,31 @@ class TelephonesController < ApplicationController
 
   def update
     if request.xhr?
-      p 'LOS PARAMETROS SON!!!!!!'
-      p params
+      parameters = update_telephone_params
+      @telephone = Telephone.find(parameters['id'])
+
+      respond_to do |format|
+        if @telephone.update_attributes(parameters['edit_telephone'])
+          format.json {render json: @telephone, status: :ok}
+        else
+          format.json {render json: @telephone.errors, status: :unprocessable_entity}
+        end
+      end
     end
   end
 
   def destroy
-    c = @telephone.customer
-    @telephone.destroy
-    redirect_to customer_path(c), notice: 'Telefono Eliminado Satisfactoriamente'
+      @telephone = Telephone.find_by_id(params[:id])
+      @telephone.destroy
+      p @telephone
+      head :ok
   end
 
   private
+  def update_telephone_params
+    params.permit(:id, edit_telephone: [:number])
+  end
+
   def telephone_params
     params.require(:telephone).permit(:customer_id, :number)
   end
