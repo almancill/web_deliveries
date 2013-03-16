@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  address: 
+  description: MyText
+  note: MyText
+  delivery_cost: 9.99
+  invoice_cost: 9.99
+  invoice_number: 1
+
+two:
+  address: 
+  description: MyText
+  note: MyText
+  delivery_cost: 9.99
+  invoice_cost: 9.99
+  invoice_number: 1
