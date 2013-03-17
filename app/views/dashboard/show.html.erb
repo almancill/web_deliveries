@@ -20,7 +20,7 @@
 		<% if current_user.admin %>
 		  <p><%= link_to 'Crear Usuario del Sistema', new_user_path %><p>
 		<% end %>
-		<p><%= link_to 'Crear Domicilio', '#' %><p>
+		<p><%= link_to 'Crear Domicilio', new_delivery_path %><p>
 		<h2>Ver</h2>
 		<% if current_user.admin %>
 			<p><%= link_to 'Lista de Usuarios del Sistema', users_path %><p>

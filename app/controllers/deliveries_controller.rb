@@ -1,5 +1,6 @@
 class DeliveriesController < ApplicationController
   def index
+    @deliveries = Delivery.paginate(per_page: 15, page: params[:page])
   end
 
   def new

@@ -12,9 +12,9 @@
 	<% end %>
 
 	<% if page == 2 %>
-		<li><%= link_to 'Domicilios', '#', id: 'current' %></li>
+		<li><%= link_to 'Domicilios', :deliveries, id: 'current' %></li>
 	<% else %>
-		<li><%= link_to 'Domicilios', '#' %></li>
+		<li><%= link_to 'Domicilios', :deliveries %></li>
 	<% end %>			
 	
 	<% if current_user.admin %>

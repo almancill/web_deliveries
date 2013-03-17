@@ -1,2 +1,51 @@
-<h1>Deliveries#new</h1>
-<p>Find me in app/views/deliveries/new.html.erb</p>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'deliveries', :media => 'all' %>	
+  <%= stylesheet_link_tag 'jquery-ui', :media => 'all' %>
+  <%= javascript_include_tag 'jquery-ui' %>
+  <%= javascript_include_tag 'jquery-validate' %>
+  <%= javascript_include_tag 'deliveries' %>
+<% end %>
+
+<div id="container">
+	<%= render 'shared/admin_login_info' %>
+	<div id="header">
+		<%= render 'shared/admin_header' %>
+	</div>
+	<div id="navcontainer">
+		<%= render 'shared/admin_menu', page: 2 %>
+	</div>
+
+	<div id="content">
+		<% if flash[:notice]%>
+			<p class="done"> <%= flash[:notice]%></p>
+		<% end %>
+		<h1> Crear Nuevo Domicilio</h1>
+		<div id='customers-find'>
+		</div>
+		<%= form_tag '/deliveries/search', method: :get, remote: true do %>
+			<%= text_field_tag 'telephone[number]', nil , size: 50 %>
+			<%= submit_tag 'Buscar Cliente', class: 'button' %>
+		<% end %>
+		<h2>Información del Domicilio</h2>
+		<%= form_tag '/deliveries/new', method: :post do %>
+			<p>
+				<%= label_tag 'delivery_customer_name', 'Nombre:' %>
+				<%= text_field_tag 'delivery[customer][name]', nil, size: 60 %>	
+			</p>
+			<p>
+				<%= label_tag 'delivery_telephone_number', 'Teléfono:' %>
+				<%= text_field_tag 'delivery[telephone][number]', nil, size: 60 %>
+			</p>
+			<p>
+				<%= label_tag 'delivery_address_value', 'Dirección' %>
+				<%= text_field_tag 'delivery[address][value]', nil, size: 60 %>
+			</p>
+			<p>
+				<%= hidden_field_tag 'address[customer_id]' %>
+				<%= text_field_tag 'address[value]' %>
+				<%= button_tag 'Agregar', class: 'button' %>
+				
+			</p>
+		<% end %>
+	</div>
+</div>
