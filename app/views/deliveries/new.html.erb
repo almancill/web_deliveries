@@ -41,12 +41,6 @@
 				<%= text_field_tag 'delivery[address][value]', nil, size: 60 %>
 			</p>
 			<p>
-				<%= hidden_field_tag 'address[customer_id]' %>
-				<%= label_tag 'address_value', 'Nueva Dirección:' %>
-				<%= text_field_tag 'address[value]', nil, size: 40 %>
-				<%= button_tag 'Agregar', class: 'button' %>
-			</p>
-			<p>
 				<%= radio_button_tag  'address[id]', '1', false, class: 'address' %><%= 'Kra. 35 # 69 C 112' %>
 				</br>
 				<%= radio_button_tag  'address[id]', '2', false, class: 'address' %><%= 'Calle 69C # 32 119' %>
