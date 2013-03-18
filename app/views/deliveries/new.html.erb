@@ -20,12 +20,17 @@
 			<p class="done"> <%= flash[:notice]%></p>
 		<% end %>
 		<h3> Crear Nuevo Domicilio</h3>
-		<div id='customers-find'>
-		</div>
 		<%= form_tag '/deliveries/search', method: :get, remote: true do %>
 			<%= text_field_tag 'telephone[number]', nil , size: 50 %>
 			<%= submit_tag 'Buscar Cliente', class: 'button' %>
 		<% end %>
+		<div id='customers-find'>
+			<ol id="selectable-customers">
+				<li id='customer_1' class="ui-widget-content">Danilo Garcia Sales</li>
+				<li id='customer_2' class="ui-widget-content">Cesar Sales Perez</li>
+				<li id='customer_-1' class="ui-widget-content">Nuevo Usuario</li>
+			</ol>
+		</div>
 		<h2>Información del Domicilio</h2>
 		<%= form_tag '/deliveries/new', method: :post do %>
 			<p>
