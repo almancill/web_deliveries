@@ -40,6 +40,19 @@ class AddressesController < ApplicationController
   def destroy
   end
 
+  def customer_addresses
+    if request.xhr?
+      begin
+        @addresses = Address.where(customer_id: params[:id])
+        render json: @addresses.to_json, status: :ok
+      rescue
+        render json: @addresses.to_json, status: :unprocessable_entity
+      end
+    end
+    
+
+  end
+
   private
   def address_params
     params.require(:address).permit(:customer_id, :value)

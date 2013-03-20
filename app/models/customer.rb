@@ -8,7 +8,7 @@ class Customer < ActiveRecord::Base
 
   #Validations
   validates :name, :escaped_name, presence: true
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, allow_blank: true, allow_nil: true
   validates :email, format: { with: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/}, allow_blank: true
 
 

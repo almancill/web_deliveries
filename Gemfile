@@ -10,6 +10,8 @@ group :development do
   gem 'quiet_assets'
   gem 'debugger'
   gem 'thin'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :production do
