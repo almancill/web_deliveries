@@ -29,47 +29,59 @@
 		<h2>Información del Domicilio</h2>
 		<%= form_tag '/deliveries', method: :post, id: 'deliveries_create' do %>
 			<p>
-				<%= hidden_field_tag 'delivery[customer][id]', '-1' %>
-				<%= label_tag 'delivery_customer_name', 'Nombre:' %>
-				<%= text_field_tag 'delivery[customer][name]', nil, size: 60 %>
-				<% if @customer.errors[:name] %>
-					<br>
-					<%= @customer.errors[:name].first %>
-				<% end %>	
-			</p>
-			<p>
-				<%= label_tag 'delivery_telephone_number', 'Teléfono:' %>
-				<%= text_field_tag 'delivery[telephone][number]', nil, size: 60 %>
-				<% if @t.errors[:number] %>
-					<br>
-					<%= @t.errors[:number].first %>
+				<%= hidden_field_tag 'customer[id]', '-1' %>
+				<%= label_tag 'customer_name', 'Nombre:' %>
+				<%= text_field_tag 'customer[name]', nil, size: 60 %>
+				<% if @customer %>
+					<% if @customer.errors[:name] %>
+						<br>
+						<%= @customer.errors[:name].first %>
+					<% end %>
 				<% end %>
 			</p>
 			<p>
-				<%= label_tag 'delivery_address_value', 'Dirección:' %>
-				<%= text_field_tag 'delivery[address][value]', nil, size: 60 %>
-				<% if @a.errors[:value] %>
-					<br>
-					<%= @a.errors[:value].first %>
+				<%= label_tag 'customer_telephones_number', 'Teléfono:' %>
+				<%= text_field_tag 'customer[telephones][number]', nil, size: 60 %>
+				<% if @t %>
+					<% if @t.errors[:number] %>
+						<br>
+						<%= @t.errors[:number].first %>
+					<% end %>
+				<% end %>
+				
+			</p>
+			<p>
+				<%= label_tag 'customer_addresses_value', 'Dirección:' %>
+				<%= text_field_tag 'customer[addresses][value]', nil, size: 60 %>
+				<% if @a %>
+					<% if @a.errors[:value] %>
+						<br>
+						<%= @a.errors[:value].first %>
+					<% end %>
 				<% end %>
 			</p>
 			<p>
 			</p>
 			<p>
-				<%= label_tag 'delivery_description', 'Descripción del Domicilio:' %>
-				<%= text_area_tag 'delivery[description]', nil, size: '68x10' %>
-				<% if @d.errors[:description] %>
-					<br>
-					<%= @d.errors[:description].first %>
-				<% end %>
+				<%= label_tag 'customer_address_delivery_description', 'Descripción del Domicilio:' %>
+				<%= text_area_tag 'customer[addresses][deliveries][description]', nil, size: '68x10' %>
+				<% if @d %>
+					<% if @d.errors[:description] %>
+						<br>
+						<%= @d.errors[:description].first %>
+					<% end %>
+				<% end %> 
 			</p>
 			<p>
-				<%= label_tag 'delivery_delivery_cost', 'Total:' %>
-				<%= text_field_tag 'delivery[delivery_cost]', nil, size: 30 %>
-				<% if @d.errors[:delivery_cost] %>
-					<br>
-					<%= @d.errors[:delivery_cost].first %>
+				<%= label_tag 'customer_address_delivery_delivery_cost', 'Total:' %>
+				<%= text_field_tag 'customer[addresses][deliveries][delivery_cost]', nil, size: 30 %>
+				<% if @d %>
+					<% if @d.errors[:delivery_cost] %>
+						<br>
+						<%= @d.errors[:delivery_cost].first %>
+					<% end %>
 				<% end %>
+
 			</p>
 			<p>
 				<%= submit_tag 'Registrar Domicilio' %>

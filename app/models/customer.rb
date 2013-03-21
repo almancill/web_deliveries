@@ -4,6 +4,8 @@ class Customer < ActiveRecord::Base
   has_many :telephones
   has_many :addresses
 
+  accepts_nested_attributes_for :telephones, :addresses
+
   default_scope{order('name ASC')}
 
   #Validations

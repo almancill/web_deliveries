@@ -49,9 +49,9 @@ $(document).ready(function(){
 				$('#selectable-customers').fadeOut('500', function(){
 					$(this).html('');
 					for(i=0;i<data.length;i++){
-						temp += "<li class='ui-widget-content ui-selectee' name='delivery[customer][id]' id='customer_"+data[i].id+"'>"+data[i].name+"</li>"
+						temp += "<li class='ui-widget-content' name='delivery[customer][id]' id='customer_"+data[i].id+"'>"+data[i].name+"</li>"
 					}
-					temp += "<li class='ui-widget-content ui-selectee' name='delivery[customer][id]' id='customer_-1'>Nuevo Usuario</li></ol>";
+					temp += "<li class='ui-widget-content' name='delivery[customer][id]' id='customer_-1'>Nuevo Usuario</li></ol>";
 					$(this).fadeIn('50',function(){
 						$(this).html(temp);
 					});
