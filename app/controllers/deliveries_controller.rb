@@ -6,21 +6,30 @@ class DeliveriesController < ApplicationController
 
   def new
     @customer = Customer.new
-    @t = Telephone.new
-    @a = Address.new
-    @d = Delivery.new
+    @customer.telephones.build
+    @customer.addresses.build.deliveries.build    
   end
 
   def create
-    p = create_with_new_customer
-    lajlkdjaj
     if params[:customer][:id].to_i == -1
-
-    else
-      if params[:customer][:address][:id]
-
+      @customer = Customer.new(create_with_new_customer)
+      if @customer.save
+        @delivery = @customer.addresses[0].deliveries[0]
+        #SE GUARDO HAY QUE MOSTRAR EL PDF PARA IMPRESION
       else
 
+      end
+    else
+      if params[:customer][:addresses_attributes][:id]
+        @addresses = Address.find(params[:customer][:addresses_attributes][:id])
+        @delivery = @addresses.deliveries.new(params[:customer][:addresses_attributes][0][:deliveries_attributes][0])
+        if @delivery.save
+          #SE GUARDO HAY QUE MOSTRAR EL PDF PARA IMPRESION
+        else
+          #HUBO ERROR
+        end
+      else
+        #@customer = Customer.find()
       end
     end
     # if params[:delivery][:customer][:id].to_i == -1
@@ -112,11 +121,11 @@ class DeliveriesController < ApplicationController
 
   private
   def create_with_new_customer
-    params.require(:customer).permit(:name, telephones: [:number], addresses: [:value, deliveries: [:description, :delivery_cost]])
+    params.require(:customer).permit(:name, telephones_attributes: ['0', :number], addresses_attributes: ['0', :value, deliveries_attributes: [:description, :delivery_cost]])
   end
 
   def create_without_new_customer
-
+    #params.permit()
   end
 
 end

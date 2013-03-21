@@ -27,65 +27,44 @@
 			</ol>
 		</div>
 		<h2>Información del Domicilio</h2>
-		<%= form_tag '/deliveries', method: :post, id: 'deliveries_create' do %>
+		<%= form_for @customer, url: '/deliveries' do |c| %>
 			<p>
-				<%= hidden_field_tag 'customer[id]', '-1' %>
-				<%= label_tag 'customer_name', 'Nombre:' %>
-				<%= text_field_tag 'customer[name]', nil, size: 60 %>
+				<%= c.hidden_field :id, value: '-1' %>
+				<%= c.label :name, 'Nombre:' %>
+				<%= c.text_field :name, size: 60 %>
 				<% if @customer %>
 					<% if @customer.errors[:name] %>
 						<br>
 						<%= @customer.errors[:name].first %>
 					<% end %>
 				<% end %>
-			</p>
-			<p>
-				<%= label_tag 'customer_telephones_number', 'Teléfono:' %>
-				<%= text_field_tag 'customer[telephones][number]', nil, size: 60 %>
-				<% if @t %>
-					<% if @t.errors[:number] %>
-						<br>
-						<%= @t.errors[:number].first %>
-					<% end %>
-				<% end %>
 				
 			</p>
 			<p>
-				<%= label_tag 'customer_addresses_value', 'Dirección:' %>
-				<%= text_field_tag 'customer[addresses][value]', nil, size: 60 %>
-				<% if @a %>
-					<% if @a.errors[:value] %>
-						<br>
-						<%= @a.errors[:value].first %>
-					<% end %>
+				<%= c.fields_for :telephones do |t| %>
+					<%= t.label :number, 'Teléfono:' %>
+					<%= t.text_field :number, size: 60 %>
 				<% end %>
 			</p>
-			<p>
-			</p>
-			<p>
-				<%= label_tag 'customer_address_delivery_description', 'Descripción del Domicilio:' %>
-				<%= text_area_tag 'customer[addresses][deliveries][description]', nil, size: '68x10' %>
-				<% if @d %>
-					<% if @d.errors[:description] %>
-						<br>
-						<%= @d.errors[:description].first %>
-					<% end %>
-				<% end %> 
-			</p>
-			<p>
-				<%= label_tag 'customer_address_delivery_delivery_cost', 'Total:' %>
-				<%= text_field_tag 'customer[addresses][deliveries][delivery_cost]', nil, size: 30 %>
-				<% if @d %>
-					<% if @d.errors[:delivery_cost] %>
-						<br>
-						<%= @d.errors[:delivery_cost].first %>
-					<% end %>
+				<%= c.fields_for :addresses do |a| %>
+					<p>
+						<%= a.label :value, 'Dirección:' %>
+						<%= a.text_field :value, size: 60 %>
+					</p>		
+						<%= a.fields_for :deliveries do |d| %>
+							<p>
+								<%= d.label :description, 'Descripción del Domicilio:' %>
+								<%= d.text_area :description, size: '68x10' %>
+							</p>
+							<p>
+								<%= d.label :delivery_cost, 'Total:' %>
+								<%= d.text_field :delivery_cost, size: 30 %>
+							</p>
+						<% end %>
 				<% end %>
-
-			</p>
 			<p>
-				<%= submit_tag 'Registrar Domicilio' %>
-			</p>	
+				<%= c.submit 'Registrar Domicilio' %>
+			</p>
 		<% end %>
 	</div>
 </div>
