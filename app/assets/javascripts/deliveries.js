@@ -9,9 +9,9 @@ $(document).ready(function(){
 				var id = $(this).attr('id').split('_')[1];
 				var name = $(this).html();
 				if(id != -1){
-					$('#delivery_customer_name').val(name); 
+					$('#customer_name').val(name); 
 					if ($('#telephone_number').val() != ''){
-						$('#delivery_telephone_number').val($('#telephone_number').val());
+						$('#customer_telephones_attributes_0_number').val($('#telephone_number').val());
 					}
 					$('#telephone_number').val('');
 					$.get('/customer/'+id+'/addresses',function(data){
@@ -19,22 +19,22 @@ $(document).ready(function(){
 						temp = '';
 
 						for(i=0;i<data.length;i++){
-							temp += "<input type='radio' value='"+data[i].id+"' name='delivery[address][id]' id='address_id_"+data[i].id+"' class='address'>"+data[i].value+"<br>";
+							temp += "<input type='radio' value='"+data[i].id+"' name='customer[addresses_attributes][0][id]' id='address_id_"+data[i].id+"' class='address'>"+data[i].value+"<br>";
 						}
-						$('#deliveries_create p:nth-child(5)').fadeIn('300', function(){
+						$('#new_customer p:nth-child(5)').fadeIn('300', function(){
 							$(this).html(temp);
 						});
 					});
 				}else{
-					$('#delivery_customer_name').val('');
+					$('#customer_name').val('');
 					if ($('#telephone_number').val() != ''){
-						$('#delivery_telephone_number').val($('#telephone_number').val());
+						$('#customer_telephones_attributes_0_number').val($('#telephone_number').val());
 					}
-					$('#deliveries_create p:nth-child(5)').fadeIn('300', function(){
+					$('#new_customer p:nth-child(5)').fadeIn('300', function(){
 						$(this).html('');
 					});
 				}
-				$('#delivery_customer_id').val(id);
+				$('#customer_id').val(id);
 			});
 		}
 	});

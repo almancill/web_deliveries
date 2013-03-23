@@ -13,98 +13,49 @@ class DeliveriesController < ApplicationController
   def create
     if params[:customer][:id].to_i == -1
       @customer = Customer.new(create_with_new_customer)
+      p = create_without_new_customer
       if @customer.save
         @delivery = @customer.addresses[0].deliveries[0]
         #SE GUARDO HAY QUE MOSTRAR EL PDF PARA IMPRESION
       else
-
+        #HUBO ERROR
+        render 'new'
       end
     else
-      if params[:customer][:addresses_attributes][:id]
-        @addresses = Address.find(params[:customer][:addresses_attributes][:id])
-        @delivery = @addresses.deliveries.new(params[:customer][:addresses_attributes][0][:deliveries_attributes][0])
+      if params[:customer][:addresses_attributes]['0'][:id]
+        @addresses = Address.find(params[:customer][:addresses_attributes]['0'][:id])
+        delivery_cost_p = params[:customer][:addresses_attributes]['0'][:deliveries_attributes]['0'][:delivery_cost]
+        delivery_description = params[:customer][:addresses_attributes]['0'][:deliveries_attributes]['0'][:description]
+        @delivery = @addresses.deliveries.new(description: delivery_description, delivery_cost: delivery_cost_p)
         if @delivery.save
           #SE GUARDO HAY QUE MOSTRAR EL PDF PARA IMPRESION
         else
           #HUBO ERROR
+          render 'new'
         end
       else
-        #@customer = Customer.find()
+        @customer = Customer.find(params[:customer][:id])
+        @address = Address.new(create_without_new_customer[:addresses_attributes]['0'])
+        @address.customer_id = @customer.id
+        if @address.save
+          @delivery = @address.deliveries[0]
+          #SE GUARDO HAY QUE MOSTRAR EL PDF PARA IMPRESION
+        else
+          render 'new'
+        end
       end
     end
-    # if params[:delivery][:customer][:id].to_i == -1
-    #   @customer = Customer.new(name: params[:delivery][:customer][:name])
-    #   if @customer.save
-    #     @t = @customer.telephones.new(number: params[:delivery][:telephone][:number])
-    #     if @t.save
-    #       if params[:delivery][:address][:value] == ''
-    #         if params[:delivery][:address][:id]
-    #           @a = Address.find(params[:delivery][:address][:id])
-    #           @d = @a.deliveries.new(description: params[:delivery][:description], delivery_cost: params[:delivery_cost])
-    #           if @d.save
-    #             #Ya aqui se va a mandar al render pdf para Impresion
-    #           else
-    #             @a.destroy
-
-    #             render 'new'
-    #           end 
-    #         else
-    #           render 'new', error: 'Debe Especificar una Dirección'
-    #         end
-    #       else
-    #         @a = @customer.addresses.new(value: params[:delivery][:address][:value])
-    #         if @a.save
-    #           @d = @a.deliveries.new(description: params[:delivery][:description], delivery_cost: params[:delivery][:delivery_cost])
-    #           if @d.save
-    #             #Ya aqui se va a mandar al render pdf para Impresion
-    #           else
-    #             render 'new'
-    #           end
-    #         else
-    #           render 'new'
-    #         end
-    #       end
-    #     else
-    #       @t.destroy
-    #       @customer.destroy
-    #       render 'new'
-    #     end
-    #   else
-    #     render 'new'
-    #   end
-    # else
-    #   @customer = Customer.find(params[:delivery][:customer][:id])
-    #   if params[:delivery][:address][:value] == ''
-    #     if params[:delivery][:address][:id]
-    #       @a = Address.find(params[:delivery][:address][:id])
-    #       @d = @a.deliveries.new(description: params[:delivery][:description], delivery_cost: params[:delivery][:delivery_cost])
-    #       if @d.save
-    #         #Ya aqui se va a mandar al render pdf para Impresion
-    #       else
-    #         render 'new'
-    #       end
-    #     else
-    #       render 'new', error: 'Debe Especificar una Dirección'
-    #     end 
-    #   else
-    #     if params[:delivery][:address][:id]
-    #       @a = Address.find(params[:delivery][:address][:id].to_i)
-    #       @d = @a.deliveries.new(description: params[:delivery][:description], delivery_cost: params[:delivery_cost])
-    #       if @d.save
-    #         #Ya aqui se va a mandar al render pdf para Impresión
-    #       else
-    #         render 'new'
-    #       end 
-    #     else
-    #       render 'new', error: 'Debe Especificar una Dirección'
-    #     end
-    #   end  
-    # end
   end
 
   def edit
   end
 
+  def show
+    respond_to do |format|
+      format.pdf {render layout: false}
+    end
+  end
+  
   def update
   end
 
@@ -119,13 +70,19 @@ class DeliveriesController < ApplicationController
     end
   end
 
+  def customer_address_deliveries
+
+  end
+
   private
   def create_with_new_customer
     params.require(:customer).permit(:name, telephones_attributes: ['0', :number], addresses_attributes: ['0', :value, deliveries_attributes: [:description, :delivery_cost]])
   end
 
+
+  #params.require(:customer).permit(telephones_attributes:[:number])
   def create_without_new_customer
-    #params.permit()
+    params.require(:customer).permit(addresses_attributes: [:value, deliveries_attributes: [:description, :delivery_cost]])
   end
 
 end

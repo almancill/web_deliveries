@@ -32,13 +32,10 @@
 				<%= c.hidden_field :id, value: '-1' %>
 				<%= c.label :name, 'Nombre:' %>
 				<%= c.text_field :name, size: 60 %>
-				<% if @customer %>
-					<% if @customer.errors[:name] %>
-						<br>
-						<%= @customer.errors[:name].first %>
-					<% end %>
+				<% if @customer.errors[:name] %>
+					<br>
+					<%= @customer.errors[:name].first %>
 				<% end %>
-				
 			</p>
 			<p>
 				<%= c.fields_for :telephones do |t| %>
@@ -52,6 +49,8 @@
 						<%= a.text_field :value, size: 60 %>
 					</p>		
 						<%= a.fields_for :deliveries do |d| %>
+							<p>
+							</p>
 							<p>
 								<%= d.label :description, 'Descripción del Domicilio:' %>
 								<%= d.text_area :description, size: '68x10' %>
