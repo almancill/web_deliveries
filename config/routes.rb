@@ -5,15 +5,15 @@ WebDeliveries::Application.routes.draw do
   delete 'logout' => 'sessions#destroy', as: 'logout'
   
   #Restful routes
-  resources :users
+  resources :users, except: [:destroy]
   resources :sessions, only: :create
   resources :customers do
   	resources :addresses
   end
-  resources :telephones
-  resources :addresses
+  resources :telephones, only: [:create, :update, :edit, :destroy]
+  resources :addresses, only: [:new, :create, :update, :show, :destroy]
   resources :deliveries
-  resources :reports
+  resources :reports, only: [:index]
 
   get 'deliveries/search/:telephone_number' => 'deliveries#search', as: 'delivery_search'
   get 'customer/:id/address/:address_id/deliveries' => 'deliveries#customer_address_deliveries', as: 'customer_address_deliveries'

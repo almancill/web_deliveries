@@ -2,12 +2,6 @@ class AddressesController < ApplicationController
   def new
   end
 
-  def show
-  	@customer = Customer.find(params[:customer_id])
-  	@address = @customer.addresses.find(params[:id])
-  	@deliveries = 'Varios Deliveries'
-  end
-
   def create 
     if request.xhr?
       @address = Address.new(address_params)
@@ -35,6 +29,12 @@ class AddressesController < ApplicationController
       end
 
     end
+  end
+
+  def show
+    @customer = Customer.find(params[:customer_id])
+    @address = @customer.addresses.find(params[:id])
+    @deliveries = @address.deliveries
   end
 
   def destroy
