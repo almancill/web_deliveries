@@ -51,6 +51,17 @@ class DeliveriesController < ApplicationController
   end
 
   def edit
+    @delivery = Delivery.find(params[:id])
+    @customer = @delivery.address.customer
+  end
+
+  def update
+    @customer = Customer.find(update_customer[:id])
+    if @customer.update_attributes(update_customer)
+      redirect_to :deliveries , notice: 'Domicilio Actualizado Satisfactoriamente'
+    else
+      render 'edit'
+    end
   end
 
   def show
@@ -64,9 +75,6 @@ class DeliveriesController < ApplicationController
     end
   end
   
-  def update
-  end
-
   def destroy
   end
 
@@ -93,6 +101,10 @@ class DeliveriesController < ApplicationController
   #params.require(:customer).permit(telephones_attributes:[:number])
   def create_without_new_customer
     params.require(:customer).permit(addresses_attributes: [:value, deliveries_attributes: [:description, :delivery_cost]])
+  end
+
+  def update_customer
+    params.require(:customer).permit(:id, :name, telephones_attributes: [:id, :number], addresses_attributes: [:id, :value, deliveries_attributes: [:id, :description, :delivery_cost, :invoice_number, :invoice_cost]])
   end
 
 end

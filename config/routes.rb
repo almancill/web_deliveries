@@ -17,4 +17,5 @@ WebDeliveries::Application.routes.draw do
 
   get 'deliveries/search/:telephone_number' => 'deliveries#search', as: 'delivery_search'
   get 'customer/:id/address/:address_id/deliveries' => 'deliveries#customer_address_deliveries', as: 'customer_address_deliveries'
+  get 'customer/:id/addresses' => 'addresses#customer_addresses', as: 'customer_address'
 end

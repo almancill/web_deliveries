@@ -25,9 +25,15 @@
 		<% end %>
 		
 		<% if page == 4 %>
-			<li><%= link_to 'Reportes', '#', id: 'current' %></li>
+			<li><%= link_to 'Reportes', :reports, id: 'current' %></li>
 		<% else %>
-			<li><%= link_to 'Reportes', '#' %></li>
+			<li><%= link_to 'Reportes', :reports %></li>
+		<% end %>
+
+		<% if page == 5 %>
+			<li><%= link_to 'Cambiar Contraseña', '#', id: 'current' %></li>
+		<% else %>
+			<li><%= link_to 'Cambiar Contraseña', '#' %></li>
 		<% end %>
 	<% end %>
 </ul>
