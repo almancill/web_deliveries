@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   before_filter :find_customer, only:[:show, :edit, :update]
+  skip_before_filter :require_admin
 
   def index
     @customers = Customer.paginate(per_page: 15, page: params[:page])

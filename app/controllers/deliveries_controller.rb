@@ -1,5 +1,7 @@
 #encoding: utf-8
 class DeliveriesController < ApplicationController
+  skip_before_filter :require_admin, except: [:destroy]
+
   def index
     @deliveries = Delivery.paginate(per_page: 15, page: params[:page])
   end
@@ -76,6 +78,9 @@ class DeliveriesController < ApplicationController
   end
   
   def destroy
+    @delivery = Delivery.find(params[:id])
+    @delivery.destroy
+    redirect_to :deliveries, notice: 'Domicilio Borrado Satisfactoriamente'
   end
 
   def search

@@ -1,4 +1,6 @@
 class AddressesController < ApplicationController
+  skip_before_filter :require_admin
+
   def new
   end
 
