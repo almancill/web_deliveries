@@ -17,6 +17,7 @@ class DeliveriesController < ApplicationController
       if @customer.save
         @delivery = @customer.addresses[0].deliveries[0]
         #SE GUARDO HAY QUE MOSTRAR EL PDF PARA IMPRESION
+        redirect_to delivery_path(@delivery, format: 'pdf')
       else
         #HUBO ERROR
         render 'new'
@@ -29,6 +30,7 @@ class DeliveriesController < ApplicationController
         @delivery = @addresses.deliveries.new(description: delivery_description, delivery_cost: delivery_cost_p)
         if @delivery.save
           #SE GUARDO HAY QUE MOSTRAR EL PDF PARA IMPRESION
+          redirect_to delivery_path(@delivery, format: 'pdf')
         else
           #HUBO ERROR
           render 'new'
@@ -40,6 +42,7 @@ class DeliveriesController < ApplicationController
         if @address.save
           @delivery = @address.deliveries[0]
           #SE GUARDO HAY QUE MOSTRAR EL PDF PARA IMPRESION
+          redirect_to delivery_path(@delivery, format: 'pdf')
         else
           render 'new'
         end
@@ -51,6 +54,11 @@ class DeliveriesController < ApplicationController
   end
 
   def show
+    @delivery = Delivery.find(params[:id])
+    @telephones = []
+    @delivery.address.customer.telephones.each do |t|
+      @telephones.append(t.number)
+    end
     respond_to do |format|
       format.pdf {render layout: false}
     end
@@ -71,7 +79,9 @@ class DeliveriesController < ApplicationController
   end
 
   def customer_address_deliveries
-
+    @customer = Customer.find(params[:id])
+    @address = Address.find(params[:address_id])
+    @deliveries = @address.deliveries.paginate(per_page: 15, page: params[:page])
   end
 
   private

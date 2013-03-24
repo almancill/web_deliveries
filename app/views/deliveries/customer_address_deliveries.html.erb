@@ -19,8 +19,12 @@
 		<% if flash[:notice]%>
 			<p class="done"> <%= flash[:notice]%></p>
 		<% end %>
+		<h1>Cliente</h1>
+		<p><%= @customer.name %></p>
+
+		<h1>Dirección</h1>
+		<p><%= @address.value %></p>
 		<h1>Domicilios</h1>
-		<%= button_tag 'Nuevo Domicilio', type: 'button', id: 'new-delivery-button', class: 'button' %>
 		<div id='deliveries'>
 			<% if current_user.admin %>
 				<%= render 'admin_deliveries' %>

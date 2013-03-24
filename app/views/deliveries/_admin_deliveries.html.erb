@@ -24,7 +24,7 @@
 				</td>
 				<td width='120'><%= d.id %></td>
 				<td width="240"><%= link_to d.address.customer.name, customer_path(d.address.customer) %></td>
-				<td width="240"><%= link_to d.address.value, customer_address_deliveries_path(id: d.address.customer.id.to_s, address_id: d.id.to_s) %></td>
+				<td width="240"><%= link_to d.address.value, customer_address_deliveries_path(id: d.address.customer.id.to_s, address_id: d.address.id.to_s) %></td>
 				<td width="240"><%= d.delivery_cost %></td>
 			</tr>
 		<% end %>

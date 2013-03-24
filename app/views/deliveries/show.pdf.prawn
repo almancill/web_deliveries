@@ -17,16 +17,6 @@ pdf.font_size(14) {pdf.draw_text 'Nombre del Cliente:', at: [50, 530]}
 pdf.font_size(14) {pdf.draw_text 'Teléfonos:', at: [50, 510]}
 pdf.font_size(14) {pdf.draw_text 'Dirección:', at: [50, 490]}
 
-
-#pdf.font("#{Rails.root.join('public', 'PinyonScript-Regular.ttf')}", size: 14, style: :normal) do
-#	pdf.text "Cirugía Cabeza y Cuello - Estética y Funcional Nasal - Alergias", align: :center
-#	pdf.text "Doctor: Alvaro Salas Monroy", align: :center
-#	pdf.text "Universidad de Cartagena", align: :center
-#	pdf.text "arsm1941@gmail.com", align: :center
-#	pdf.text "Carrera 43 N0. 69E - 53 Teléfonos: 358 83 13", align: :center
-#	pdf.text "Barranquilla", align: :center
-#end
-
 pdf.stroke do
 	pdf.rounded_rectangle [30, 580], 500, 100, 20
 end
@@ -43,4 +33,9 @@ pdf.fill_color red_color
 
 pdf.fill_color black_color
 
-#pdf.text_box coder.decode(strip_tags(@story.tratamiento)), width: 400, height: 300, at: [80, pdf.y], #size: 14, inline_format: true
+pdf.font_size(14) {pdf.draw_text @delivery.id, at:[70, 550]}
+pdf.font_size(14) {pdf.draw_text @delivery.address.customer.name, at: [180, 530]}
+pdf.font_size(14) {pdf.draw_text @telephones.join(' - '), at: [120, 510]}
+pdf.font_size(14) {pdf.draw_text @delivery.address.value, at: [120, 490]}
+
+pdf.text_box @delivery.description, width: 400, height: 300, at: [60, 450], size: 14, inline_format: true
