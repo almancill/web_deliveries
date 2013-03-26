@@ -27,37 +27,43 @@
 				<%= c.label :name, 'Nombre:' %>
 				<%= c.text_field :name %>
 			</p>
-			<p>
+			
 				<%= c.fields_for :telephones do |t| %>
-					<%= t.hidden_field :id %>
-					<%= t.label :number, 'Teléfono:' %>
-					<%= t.text_field :number, size: 60 %>
+					<p>
+						<%= t.hidden_field :id %>
+						<%= t.label :number, 'Teléfono:' %>
+						<%= t.text_field :number, size: 60 %>
+					</p>
 				<% end %>
-			</p>
+			
 				<%= c.fields_for :addresses do |a| %>
 					<p>
 						<%= a.hidden_field :id %>
 						<%= a.label :value, 'Dirección:' %>
 						<%= a.text_field :value, size: 60 %>
 					</p>		
+						<% cont = 0 %>
 						<%= a.fields_for :deliveries do |d| %>
-							<p>
-								<%= d.hidden_field :id %>
-								<%= d.label :description, 'Descripción del Domicilio:' %>
-								<%= d.text_area :description, size: '68x10' %>
-							</p>
-							<p>
-								<%= d.label :delivery_cost, 'Total:' %>
-								<%= d.text_field :delivery_cost, size: 30 %>
-							</p>
-							<p>
-								<%= d.label :invoice_number, 'Nro. de Factura:' %>
-								<%= d.text_field :invoice_number %>
-							</p>
-							<p>
-								<%= d.label :invoice_cost, 'Costo de Factura:' %>
-								<%= d.text_field :invoice_cost %>
-							</p>
+							<% if cont == 0%>
+								<p>
+									<%= d.hidden_field :id %>
+									<%= d.label :description, 'Descripción del Domicilio:' %>
+									<%= d.text_area :description, size: '68x10' %>
+								</p>
+								<p>
+									<%= d.label :delivery_cost, 'Total:' %>
+									<%= d.text_field :delivery_cost, size: 30 %>
+								</p>
+								<p>
+									<%= d.label :invoice_number, 'Nro. de Factura:' %>
+									<%= d.text_field :invoice_number %>
+								</p>
+								<p>
+									<%= d.label :invoice_cost, 'Costo de Factura:' %>
+									<%= d.text_field :invoice_cost %>
+								</p>
+								<% cont = cont + 1 %>
+							<% end %>
 						<% end %>
 				<% end %>
 			<p>

@@ -1,2 +1,25 @@
-<h1>Reports#index</h1>
-<p>Find me in app/views/reports/index.html.erb</p>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'reports', :media => 'all' %>	
+  <%= stylesheet_link_tag 'jquery-ui', :media => 'all' %>
+  <%= javascript_include_tag 'jquery-ui' %>
+  <%= javascript_include_tag 'reports' %>
+<% end %>
+
+<div id="container">
+	<%= render 'shared/admin_login_info' %>
+	<div id="header">
+		<%= render 'shared/admin_header' %>
+	</div>
+	<div id="navcontainer">
+		<%= render 'shared/admin_menu', page: 4 %>
+	</div>
+
+	<div id="content">
+		<% if flash[:notice]%>
+			<p class="done"> <%= flash[:notice]%></p>
+		<% end %>
+		<h2>Generar Reportes</h2>
+		<%= text_field_tag 'date', nil , size: 30 %>
+		<%= submit_tag 'Obtener', class: 'button report' %>
+	</div>
+</div>

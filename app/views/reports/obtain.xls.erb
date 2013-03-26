@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Hoja1">
+    <Table>
+      <Row>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Informe del Día:</Data></Cell>
+        <Cell><Data ss:Type="String"><%= @date.join('-') %></Data></Cell>
+      </Row>
+      <Row>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Nro. de Domicilios:</Data></Cell>
+        <Cell><Data ss:Type="Number"><%= @number_deliveries %></Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Ingresos por Domicilios:</Data></Cell>
+        <Cell><Data ss:Type="Number"><%= @total_cost_deliveries %></Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Gastos en Domicilios:</Data></Cell>
+        <Cell><Data ss:Type="Number"><%= @total_invoice %></Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Nro. de Clientes en la Base de Datos:</Data></Cell>
+        <Cell><Data ss:Type="Number"><%= @number_customers %></Data></Cell>
+      </Row>
+      
+    </Table>
+  </Worksheet>
+</Workbook>

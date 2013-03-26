@@ -29,11 +29,16 @@
 		<% else %>
 			<li><%= link_to 'Reportes', :reports %></li>
 		<% end %>
-
-		<% if page == 5 %>
-			<li><%= link_to 'Cambiar Contraseña', '#', id: 'current' %></li>
+	<% else %>
+		<% if page == 3 %>
+			<li><%= link_to 'Mi Usuario', edit_user_path(current_user), id: 'current' %></li>
 		<% else %>
-			<li><%= link_to 'Cambiar Contraseña', '#' %></li>
+			<li><%= link_to 'Mi Usuario', edit_user_path(current_user) %></li>
 		<% end %>
+	<% end %>
+	<% if page == 5 %>
+		<li><%= link_to 'Cambiar Contraseña', password_edit_path, id: 'current' %></li>
+	<% else %>
+		<li><%= link_to 'Cambiar Contraseña', password_edit_path %></li>
 	<% end %>
 </ul>
