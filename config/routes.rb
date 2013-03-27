@@ -1,4 +1,14 @@
 WebDeliveries::Application.routes.draw do
+  get "motorcycles/index"
+
+  get "motorcycles/new"
+
+  get "motorcycles/create"
+
+  get "motorcycles/edit"
+
+  get "motorcycles/update"
+
   root to: 'site#index'
 
   #Auth paths
