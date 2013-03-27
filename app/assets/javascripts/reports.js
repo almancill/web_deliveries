@@ -12,9 +12,9 @@ $(document).ready(function(){
             "Ago", "Sep", "Oct", "Nov", "Dic"]
     });
     $('.report').click(function(e){
-        e.preventDefault();  //stop the browser from following
-        window.location.href = '/reports/'+$('#date').val()+'.xls';
-        //$.get('/reports/'+$('#date').val()+'.xls');
-        //alert($('#date').val());
+        e.preventDefault();
+        if($('#date').val() != ''){
+            window.location.href = '/reports/'+$('#date').val()+'.xls';
+        }
     });
 });

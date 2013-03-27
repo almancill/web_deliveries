@@ -7,7 +7,7 @@ pdf.stroke do
 	pdf.rounded_rectangle [30, 730], 500, 140, 30
 end
 
-pdf.image "#{Rails.root.join('app','assets','images', 'logo.png')}", at: [50, 730]
+pdf.image "#{Rails.root.join('app','assets','images', 'logo.png')}", at: [50, 700], fit: [200, 80]
 
 pdf.font_size(25) {pdf.draw_text 'Domi Flash', at: [220, 650]}
 pdf.font_size(20) {pdf.draw_text 'Información del Domicilio', at: [180, 630]}
