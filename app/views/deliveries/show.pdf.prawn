@@ -16,15 +16,16 @@ pdf.font_size(14) {pdf.draw_text 'Id:', at: [50, 550]}
 pdf.font_size(14) {pdf.draw_text 'Nombre del Cliente:', at: [50, 530]}
 pdf.font_size(14) {pdf.draw_text 'Teléfonos:', at: [50, 510]}
 pdf.font_size(14) {pdf.draw_text 'Dirección:', at: [50, 490]}
+pdf.font_size(14) {pdf.draw_text 'Fecha:', at: [50, 470]}
 
 pdf.stroke do
-	pdf.rounded_rectangle [30, 580], 500, 100, 20
+	pdf.rounded_rectangle [30, 580], 500, 120, 20
 end
 
 pdf.move_down(80)
 
 pdf.stroke do
-	pdf.rounded_rectangle [30, 470], 500, 480, 30
+	pdf.rounded_rectangle [30, 450], 500, 480, 30
 end
 
 pdf.move_down(60)
@@ -37,5 +38,6 @@ pdf.font_size(14) {pdf.draw_text @delivery.id, at:[70, 550]}
 pdf.font_size(14) {pdf.draw_text @delivery.address.customer.name, at: [180, 530]}
 pdf.font_size(14) {pdf.draw_text @telephones.join(' - '), at: [120, 510]}
 pdf.font_size(14) {pdf.draw_text @delivery.address.value, at: [120, 490]}
+pdf.font_size(14) {pdf.draw_text @delivery.created_at.strftime('%d-%m-%Y'), at: [100, 470]}
 
-pdf.text_box @delivery.description, width: 400, height: 300, at: [60, 450], size: 14, inline_format: true
+pdf.text_box @delivery.description, width: 400, height: 300, at: [60, 430], size: 14, inline_format: true
