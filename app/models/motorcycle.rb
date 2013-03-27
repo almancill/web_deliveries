@@ -1,3 +1,14 @@
 class Motorcycle < ActiveRecord::Base
-  attr_accessible :description, :messenger_name, :name
+	has_many :deliveries
+
+	default_scope{order('name ASC')}
+
+	validates :name, :messenger_name, presence: true
+
+	before_validation :format_attributes
+
+	def format_attributes
+		self.name = self.name.strip.squeeze(" ").titleize
+		self.messenger_name = self.messenger_name.squeeze(" ").titleize
+	end
 end

@@ -4,6 +4,7 @@ class CreateDeliveries < ActiveRecord::Migration
       t.references :address, null: false
       t.text :description, null: false
       t.text :note
+      t.references :motorcycle, null: false
       t.decimal :delivery_cost, null: false
       t.decimal :invoice_cost
       t.integer :invoice_number
