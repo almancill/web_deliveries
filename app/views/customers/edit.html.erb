@@ -1,3 +1,10 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'customers', :media => 'all' %>	
+  <%= stylesheet_link_tag 'jquery-ui', :media => 'all' %>
+  <%= javascript_include_tag 'jquery-ui' %>
+  <%= javascript_include_tag 'jquery-validate' %>
+  <%= javascript_include_tag 'customers' %>
+<% end %>
 <div id="container">
 	<%= render 'shared/admin_login_info' %>
 	<div id="header">

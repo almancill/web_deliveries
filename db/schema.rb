@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 5) do
+ActiveRecord::Schema.define(:version => 6) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "customer_id", :null => false
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 5) do
     t.integer  "address_id",     :null => false
     t.text     "description",    :null => false
     t.text     "note"
+    t.integer  "motorcycle_id",  :null => false
     t.decimal  "delivery_cost",  :null => false
     t.decimal  "invoice_cost"
     t.integer  "invoice_number"
@@ -42,6 +43,14 @@ ActiveRecord::Schema.define(:version => 5) do
   end
 
   add_index "deliveries", ["address_id"], :name => "index_deliveries_on_address_id"
+
+  create_table "motorcycles", :force => true do |t|
+    t.string   "name",           :null => false
+    t.string   "messenger_name", :null => false
+    t.text     "description"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "telephones", :force => true do |t|
     t.integer  "customer_id", :null => false

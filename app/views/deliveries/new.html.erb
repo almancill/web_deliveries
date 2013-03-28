@@ -56,6 +56,10 @@
 								<%= d.text_area :description, size: '68x10' %>
 							</p>
 							<p>
+								<%= d.label :motorcycle_id, 'Motocicleta:' %>
+								<%= d.collection_select(:motorcycle_id, Motorcycle.all, :id, :name) %>
+							</p>
+							<p>
 								<%= d.label :delivery_cost, 'Total:' %>
 								<%= d.text_field :delivery_cost, size: 30 %>
 							</p>

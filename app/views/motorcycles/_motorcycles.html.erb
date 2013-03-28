@@ -1,0 +1,21 @@
+<table width="870" border="0" align="center" cellpadding="5" cellspacing="0" id="news-list" class="pretty">
+	<thead>
+		<tr>
+			<th width="16" scope="col">&nbsp;</th>
+			<th width="180" scope="col">Moto</th>
+			<th width="240" scope="col">Nombre del Mensajero</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @motorcycles.each do |m| %>
+			<tr class="item_list">
+				<td width="16">
+					<%= link_to image_tag("edit.png",size:"16x16"), edit_motorcycle_path(m) %>
+				</td>
+				<td width="180"><%= m.name %></td>
+				<td width="240"><%= m.messenger_name %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= will_paginate @motorcycles, previous_label: "Anterior", next_label: "Siguiente" %>

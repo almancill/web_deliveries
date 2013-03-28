@@ -29,6 +29,11 @@
 		<% else %>
 			<li><%= link_to 'Reportes', :reports %></li>
 		<% end %>
+		<% if page == 5 %>
+			<li><%= link_to 'Motocicletas', :motorcycles, id: 'current' %></li>
+		<% else %>
+			<li><%= link_to 'Motocicletas', :motorcycles %></li>
+		<% end %>
 	<% else %>
 		<% if page == 3 %>
 			<li><%= link_to 'Mi Usuario', edit_user_path(current_user), id: 'current' %></li>
@@ -36,7 +41,7 @@
 			<li><%= link_to 'Mi Usuario', edit_user_path(current_user) %></li>
 		<% end %>
 	<% end %>
-	<% if page == 5 %>
+	<% if page == 6 %>
 		<li><%= link_to 'Cambiar Contraseña', password_edit_path, id: 'current' %></li>
 	<% else %>
 		<li><%= link_to 'Cambiar Contraseña', password_edit_path %></li>

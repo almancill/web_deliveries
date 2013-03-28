@@ -1,14 +1,4 @@
 WebDeliveries::Application.routes.draw do
-  get "motorcycles/index"
-
-  get "motorcycles/new"
-
-  get "motorcycles/create"
-
-  get "motorcycles/edit"
-
-  get "motorcycles/update"
-
   root to: 'site#index'
 
   #Auth paths
@@ -24,6 +14,7 @@ WebDeliveries::Application.routes.draw do
   resources :addresses, only: [:new, :create, :update, :show, :destroy]
   resources :deliveries
   resources :reports, only: [:index]
+  resources :motorcycles, except: [:destroy]
   #resources :passwords, only: [:edit, :update]
 
   get 'deliveries/search/:telephone_number' => 'deliveries#search', as: 'delivery_search'

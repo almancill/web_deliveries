@@ -42,13 +42,16 @@
 						<%= a.label :value, 'Dirección:' %>
 						<%= a.text_field :value, size: 60 %>
 					</p>		
-						<% cont = 0 %>
-						<%= a.fields_for :deliveries do |d| %>
-							<% if cont == 0%>
+						<%= a.fields_for :deliveries, @delivery do |d| %>
+							<% if @cont == 0%>
 								<p>
 									<%= d.hidden_field :id %>
 									<%= d.label :description, 'Descripción del Domicilio:' %>
 									<%= d.text_area :description, size: '68x10' %>
+								</p>
+								<p>
+									<%= d.label :motorcycle_id, 'Motocicleta:' %>
+									<%= d.collection_select(:motorcycle_id, Motorcycle.all, :id, :name) %>
 								</p>
 								<p>
 									<%= d.label :delivery_cost, 'Total:' %>
@@ -62,7 +65,7 @@
 									<%= d.label :invoice_cost, 'Costo de Factura:' %>
 									<%= d.text_field :invoice_cost %>
 								</p>
-								<% cont = cont + 1 %>
+								<% @cont = @cont + 1 %>
 							<% end %>
 						<% end %>
 				<% end %>
