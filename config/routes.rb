@@ -14,8 +14,10 @@ WebDeliveries::Application.routes.draw do
   resources :addresses, only: [:new, :create, :update, :show, :destroy]
   resources :deliveries
   resources :reports, only: [:index]
-  resources :motorcycles, except: [:destroy]
-  #resources :passwords, only: [:edit, :update]
+  #resources :motorcycles, except: [:destroy]
+  resources :motorcycles, except: :destroy do
+    resources :bases, only: :index
+  end
 
   get 'deliveries/search/:telephone_number' => 'deliveries#search', as: 'delivery_search'
   get 'customer/:id/address/:address_id/deliveries' => 'deliveries#customer_address_deliveries', as: 'customer_address_deliveries'
