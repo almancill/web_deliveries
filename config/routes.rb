@@ -16,7 +16,7 @@ WebDeliveries::Application.routes.draw do
   resources :reports, only: [:index]
   #resources :motorcycles, except: [:destroy]
   resources :motorcycles, except: :destroy do
-    resources :bases, only: :index
+    resources :bases, only: [:index, :create]
   end
 
   get 'deliveries/search/:telephone_number' => 'deliveries#search', as: 'delivery_search'

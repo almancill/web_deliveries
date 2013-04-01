@@ -23,14 +23,14 @@ ActiveRecord::Schema.define(:version => 7) do
   add_index "addresses", ["customer_id"], :name => "index_addresses_on_customer_id"
 
   create_table "bases", :force => true do |t|
-    t.decimal  "amount",         :null => false
+    t.decimal  "amount",        :null => false
     t.text     "description"
-    t.integer  "motorcycles_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "motorcycle_id", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
-  add_index "bases", ["motorcycles_id"], :name => "index_bases_on_motorcycles_id"
+  add_index "bases", ["motorcycle_id"], :name => "index_bases_on_motorcycle_id"
 
   create_table "customers", :force => true do |t|
     t.string   "name",         :null => false

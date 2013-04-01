@@ -1,0 +1,29 @@
+<table width="870" border="0" align="center" cellpadding="5" cellspacing="0" id="news-list" class="pretty">
+	<thead>
+		<tr>
+			<% if current_user.admin %>
+				<th width="16" scope="col">&nbsp;</th>
+			<% end %>
+				<th width="16" scope="col">&nbsp;</th>
+				<th width="180" scope="col">Monto</th>
+				<th width="240" scope="col">Descripción</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @bases.each do |b| %>
+			<tr class="item_list">
+				<td width="16">
+					<%= link_to image_tag("edit.png",size:"16x16"), '#', class: 'edit-base', id: 'edit-base_'+b.id.to_s %>
+				</td>
+				<% if current_user.admin %>
+					<td width="16">
+						<%= link_to image_tag("edit.png",size:"16x16"), '#', class: 'delete-base', id: 'delete-base_'+b.id.to_s %>
+					</td>
+				<% end %>
+				<td width="180"><%= b.amount %></td>
+				<td width="240"><%= b.description %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= will_paginate @bases, previous_label: "Anterior", next_label: "Siguiente" %>

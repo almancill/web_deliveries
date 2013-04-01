@@ -3,10 +3,10 @@ class CreateBases < ActiveRecord::Migration
     create_table :bases do |t|
       t.decimal :amount, null: false
       t.text :description
-      t.references :motorcycles
+      t.references :motorcycle, null: false
 
       t.timestamps
     end
-    add_index :bases, :motorcycles_id
+    add_index :bases, :motorcycle_id
   end
 end

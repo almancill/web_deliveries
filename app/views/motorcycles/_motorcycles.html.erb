@@ -12,7 +12,7 @@
 				<td width="16">
 					<%= link_to image_tag("edit.png",size:"16x16"), edit_motorcycle_path(m) %>
 				</td>
-				<td width="180"><%= m.name %></td>
+				<td width="180"><%= link_to m.name, motorcycle_bases_path(m) %></td>
 				<td width="240"><%= m.messenger_name %></td>
 			</tr>
 		<% end %>
