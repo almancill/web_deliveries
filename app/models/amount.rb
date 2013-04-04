@@ -1,4 +1,7 @@
 class Amount < ActiveRecord::Base
   belongs_to :motorcycle
-  attr_accessible :description, :money_amount
+  
+  default_scope{ order('id DESC')}
+
+  validates :money_amount, numericality: true
 end
