@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  money_amount: 9.99
+  description: MyText
+  motorcycle: 
+
+two:
+  money_amount: 9.99
+  description: MyText
+  motorcycle: 
