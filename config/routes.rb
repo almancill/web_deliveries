@@ -1,8 +1,4 @@
 WebDeliveries::Application.routes.draw do
-  get "amounts/index"
-
-  get "amounts/create"
-
   root to: 'site#index'
 
   #Auth paths

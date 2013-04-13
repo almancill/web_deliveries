@@ -1,2 +1,45 @@
-<h1>Amounts#index</h1>
-<p>Find me in app/views/amounts/index.html.erb</p>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'motorcycles', :media => 'all' %>	
+  <%= javascript_include_tag 'motorcycles' %>
+ <% end %>
+<div id="container">
+	<%= render 'shared/admin_login_info' %>
+	<div id="header">
+		<%= render 'shared/admin_header' %>
+	</div>
+	<div id="navcontainer">
+		<%= render 'shared/admin_menu', page: 5 %>
+	</div>
+
+	<div id="content">
+		<% if flash[:notice]%>
+			<p class="done"> <%= flash[:notice]%></p>
+		<% end %>
+		<h2>Bases de la Motocicleta: <%= @motorcycle.name %></h2>
+		<h1>Mensajero: <%= @motorcycle.messenger_name %></h1>
+		<%= button_tag 'Agregar Base', type: 'button', id: 'new-motorcycle-button', class: 'button' %>
+		<div id='amounts'>
+			<%= render 'amounts' %>
+		</div>
+		<div id='new-amount-form'>
+			<h2>Nueva Base</h2>
+			<%= form_for @amount, url: motorcycle_amounts_path(@amount.motorcycle_id), remote: true do |f| %>
+				<%= f.hidden_field :motorcycle_id %>
+				<%= f.text_field :money_amount, placeholder: 'Base' %>
+				<p>
+					<%= f.submit 'Crear', class: 'button' %>	
+				</p>
+			<% end %>
+		</div>
+		<div id='update-amount-form'>
+			<h2>Editar Base</h2>
+			<%= form_for @amount, url: motorcycle_amounts_path(@amount.motorcycle_id), remote: true do |f| %>
+				<%= f.hidden_field :motorcycle_id %>
+				<%= f.text_field :money_amount, placeholder: 'Base' %>
+				<p>
+					<%= f.submit 'Crear', class: 'button' %>	
+				</p>
+			<% end %>
+		</div>
+	</div>
+</div>

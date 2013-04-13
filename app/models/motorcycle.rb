@@ -1,6 +1,6 @@
 class Motorcycle < ActiveRecord::Base
 	has_many :deliveries
-	has_many :bases
+	has_many :amounts
 
 	default_scope{order('name ASC')}
 
