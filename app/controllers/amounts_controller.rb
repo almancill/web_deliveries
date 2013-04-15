@@ -3,6 +3,7 @@ class AmountsController < ApplicationController
   	@motorcycle = Motorcycle.find(params[:motorcycle_id])
   	@amounts = @motorcycle.amounts.paginate(per_page: 15, page: params[:page])
   	@amount = @motorcycle.amounts.new
+    cookies['admin'] = current_user.admin
   end
 
   def create
@@ -28,15 +29,21 @@ class AmountsController < ApplicationController
 	          format.json {render json: @amount.errors, status: :unprocessable_entity}
 	        end
 	    end
-	end
+	  end
+  end
+
+  def destroy
+    @amount = Amount.find(params[:id])
+    @amount.destroy
+    head :ok
   end
 
   private
   def create_amount_parameters
-
+    params.require(:amount).permit(:motorcycle_id, :money_amount)
   end
 
   def update_amount_parameters
-
+    params.require(:amount).permit(:money_amount)
   end
 end

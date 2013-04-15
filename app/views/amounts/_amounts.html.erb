@@ -12,19 +12,22 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @amounts.each do |c| %>
+		<% @amounts.each do |a| %>
 			<tr class="item_list">
 				<% if current_user.admin %>
 					<td width="16">
-						<%= link_to image_tag("edit.png",size:"16x16"), edit_customer_path(c) %>
+						<%= link_to image_tag("delete.png",size:"16x16"), motorcycle_amount_path(a.motorcycle_id, a.id), method: :delete, remote: true, class: 'delete-amount', confirm: '¿Esta seguro que desea eliminar la base?' %>
+					</td>
+					<td width="16">
+						<%= link_to image_tag("edit.png",size:"16x16"), '#', id: "edit-amount_#{a.id}" %>
 					</td>
 				<% else %>
 					<td width="16">
-						<%= link_to image_tag("edit.png",size:"16x16"), edit_customer_path(c) %>
+						<%= link_to image_tag("edit.png",size:"16x16"), '#' %>
 					</td>
 				<% end %>
-				<td width="240"><%= link_to c.name, customer_path(c) %></td>
-				<td width="180"><%= c.email %></td>
+				<td width="240" id="money-amount-value_<%= a.id %>" > <%= a.money_amount %></td>
+				<td width="180"><%= a.created_at.strftime('%d-%m-%Y %I:%M %p') %></td>
 			</tr>
 		<% end %>
 	</tbody>

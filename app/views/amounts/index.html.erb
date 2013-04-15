@@ -1,5 +1,7 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag 'amounts', :media => 'all' %>	
+  <%= stylesheet_link_tag 'jquery-ui', :media => 'all' %>
+  <%= javascript_include_tag 'jquery-ui' %>
   <%= javascript_include_tag 'amounts' %>
 <% end %>
 <div id="container">
@@ -21,19 +23,16 @@
 		<div id='amounts'>
 			<%= render 'amounts' %>
 		</div>
-		<div id='new-amount-form'>
+		<div id='new-amount-form' class='hide'>
 			<h2>Nueva Base</h2>
 			<%= form_for @amount, url: motorcycle_amounts_path(@amount.motorcycle_id), remote: true do |f| %>
 				<%= f.hidden_field :motorcycle_id %>
 				<%= f.text_field :money_amount, placeholder: 'Base' %>
-				<p>
-					<%= f.submit 'Crear', class: 'button' %>	
-				</p>
 			<% end %>
 		</div>
 		<div id='update-amount-form'>
 			<h2>Editar Base</h2>
-			<%= form_for @amount, url: motorcycle_amounts_path(@amount.motorcycle_id), remote: true do |f| %>
+			<%= form_for @amount, url: '#' do |f| %>
 				<%= f.hidden_field :motorcycle_id %>
 				<%= f.text_field :money_amount, placeholder: 'Base' %>
 				<p>
