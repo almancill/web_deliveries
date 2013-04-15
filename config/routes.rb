@@ -14,7 +14,6 @@ WebDeliveries::Application.routes.draw do
   resources :addresses, only: [:new, :create, :update, :show, :destroy]
   resources :deliveries
   resources :reports, only: [:index]
-  #resources :motorcycles, except: [:destroy]
   resources :motorcycles, except: :destroy do
     resources :amounts, only: [:index, :create]
   end

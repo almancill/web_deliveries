@@ -1,7 +1,7 @@
 <% content_for :head do %>
-  <%= stylesheet_link_tag 'motorcycles', :media => 'all' %>	
-  <%= javascript_include_tag 'motorcycles' %>
- <% end %>
+  <%= stylesheet_link_tag 'amounts', :media => 'all' %>	
+  <%= javascript_include_tag 'amounts' %>
+<% end %>
 <div id="container">
 	<%= render 'shared/admin_login_info' %>
 	<div id="header">
@@ -17,7 +17,7 @@
 		<% end %>
 		<h2>Bases de la Motocicleta: <%= @motorcycle.name %></h2>
 		<h1>Mensajero: <%= @motorcycle.messenger_name %></h1>
-		<%= button_tag 'Agregar Base', type: 'button', id: 'new-motorcycle-button', class: 'button' %>
+		<%= button_tag 'Agregar Base', type: 'button', id: 'new-amount-button', class: 'button' %>
 		<div id='amounts'>
 			<%= render 'amounts' %>
 		</div>
