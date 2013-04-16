@@ -29,15 +29,7 @@ $(document).ready(function(){
 	    modal: true,
 	    buttons: {
 	      'Editar Base': function() {
-	          if($('#amount_money_amount').val() != ''){
-	          	var motorcycle_id = $('#amount_motorcycle_id').val();	
-	          	$.post('/motorcycles/'+motorcycle_id+'/amounts.json', $('#new_amount').serialize(), function(){
-			    }).success(function(data){
-		        	new_amount(data, motorcycle_id);
-		          }).error(function(data){
-			      
-			      });
-	          }
+	          alert('Entro!!!');
 	      }
 	    },
 	    close: function() {
@@ -67,12 +59,21 @@ $(document).ready(function(){
 	$(document).on('ajax:error', '#new_amount', function(){
 		alert('error al eliminar');
 	});
+    
+    $(document).on('click', '.edit-amount', function() { 
+      var id = $(this).attr('id').split('_')[1];
+      var temp ='#money-amount-value_'+id; 
+      $('#edit_money_amount').val($(temp).html());
+      $('#amount_id').val(id);
+      $('#edit-amount-form').dialog('open');
+    });
 
     $('#edit_amount').submit(function(){
       //edit_address();
 
       return false;
     });
+
 });
 
 function getCookie(c_name)
@@ -104,7 +105,6 @@ function new_amount(data, motorcycle_id){
 	var id = data.id;
     if(getCookie('admin')){
     	var date = new Date(data.created_at);
-    	//alert();
     	var temp = "<tr class='item_list'><td width='16'><a rel='nofollow' data-remote='true' data-method='delete' data-confirm='¿Esta seguro que desea eliminar la base?' class='delete-amount' href='/motorcycles/"+motorcycle_id+"/amounts/"+id+"'><img width='16' height='16' src='/assets/delete.png' alt='Delete'></a></td><td width='16'><a id='edit-amount_"+id+"' class='edit-amount' href='#'><img width='16' height='16' src='/assets/edit.png' alt='Edit'></a></td><td width='240' id='money-amount-value_"+id+"'>"+data.money_amount+"</td><td width='180'>"+date.toString('d-MM-yyyy hh:mm tt')+"</td></tr>";	
     }else{
     	var temp = "<tr class='item_list'><td width='16'><a id='edit-amount_"+id+"' class='edit-amount' href='#'><img width='16' height='16' src='/assets/edit.png' alt='Edit'></a></td><td width='240' id='money-amount-value_"+id+"'>"+data.money_amount+"</td><td width='180'>"+data.created_at+"</td></tr>";

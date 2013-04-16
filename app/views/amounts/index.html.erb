@@ -31,14 +31,12 @@
 				<%= f.text_field :money_amount, placeholder: 'Base' %>
 			<% end %>
 		</div>
-		<div id='update-amount-form'>
+		<div id='edit-amount-form' class='hide'>
 			<h2>Editar Base</h2>
 			<%= form_tag '#', method: :put, id: 'edit_amount' do |f| %>
 				<%= hidden_field_tag :motorcycle_id, @amount.motorcycle_id, id: 'edit_motorcycle_id', name: 'amount[motorcycle_id]' %>
+				<%= hidden_field_tag :amount_id, '-1' %>
 				<%= text_field_tag :money_amount, nil, placeholder: 'Base', id: 'edit_money_amount', name: 'amount[money_amount]' %>
-				<p>
-					<%= submit_tag 'Crear', class: 'button' %>	
-				</p>
 			<% end %>
 		</div>
 	</div>
