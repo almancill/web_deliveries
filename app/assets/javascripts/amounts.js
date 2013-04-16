@@ -6,39 +6,30 @@ $(document).ready(function(){
 	    modal: true,
 	    buttons: {
 	      'Agregar Base': function() {
-	          /*new_address();*/
 	          if($('#amount_money_amount').val() != ''){
 	          	var motorcycle_id = $('#amount_motorcycle_id').val();	
-	          	$.post('/motorcycles/'+ motorcycle_id+ '/amounts.json', $('#new_amount').serialize(), function(){
+	          	$.post('/motorcycles/'+motorcycle_id+'/amounts.json', $('#new_amount').serialize(), function(){
 			    }).success(function(data){
 		        	var id = data.id;
 			        if($.cookie('admin')){
-			        	var temp = "<tr class='item_list'><td width='16'><a id='edit-address_"+data.id+"' class='edit-address' href='#''><img width='16' height='16' src='/assets/edit_address.png' alt='Edit_address'></a></td><td width='240' id='value_"+data.id+"'><a href='/customers/"+data.customer_id+"/addresses/"+data.id+"'>"+data.value+"</a></td></tr>";	
+			        	var temp = "<tr class='item_list'><td width='16'><a rel='nofollow' data-remote='true' data-method='delete' data-confirm='¿Esta seguro que desea eliminar la base?' class='delete-amount' href='/motorcycles/"+motorcycle_id+"/amounts/"+id+"'><img width='16' height='16' src='/assets/delete.png' alt='Delete'></a></td><td width='16'><a id='edit-amount_"+id+"' class='edit-amount' href='#'><img width='16' height='16' src='/assets/edit.png' alt='Edit'></a></td><td width='240' id='money-amount-value_"+id+"'>"+data.money_amount+"</td><td width='180'>"+data.created_at+"</td></tr>";	
 			        }else{
-			        	var temp = "";
+			        	var temp = "<tr class='item_list'><td width='16'><a id='edit-amount_"+id+"' class='edit-amount' href='#'><img width='16' height='16' src='/assets/edit.png' alt='Edit'></a></td><td width='240' id='money-amount-value_"+id+"'>"+data.money_amount+"</td><td width='180'>"+data.created_at+"</td></tr>";
 			        }
 			        
-
-			        $('#address_value').val('');
-			        $('#new-address-form').dialog('close');
-			        if($('#addresses_table tbody tr:last-child').length > 0){
-			          $('#addresses_table tbody tr:last-child').fadeIn(200, function(){
-			            $(this).after(temp);
-			          });
-			        }else{
-			          $('#addresses_table tbody').fadeIn(200, function(){
-			            $(this).after(temp);
-			          });
-			        }
+			        $('#amount_money_amount').val('');
+			        $('#new-amount-form').dialog('close');
+			        $('#amounts_list tbody').fadeIn(200, function(){
+			        	$(this).append(temp);
+			        });
 			      }).error(function(data){
 			      
 			      });
 	          }
-	          //alert('Cualquier cosa');
 	      }
 	    },
 	    close: function() {
-	        /*$('#address_value').val('');*/
+	        $('#amount_money_value').val('');
 	    }
   	});
 

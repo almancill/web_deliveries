@@ -1,4 +1,4 @@
-<table width="870" border="0" align="center" cellpadding="5" cellspacing="0" id="news-list" class="pretty">
+<table width="870" border="0" align="center" cellpadding="5" cellspacing="0" id="amounts_list" class="pretty">
 	<thead>
 		<tr>
 			<% if current_user.admin %>
@@ -19,7 +19,7 @@
 						<%= link_to image_tag("delete.png",size:"16x16"), motorcycle_amount_path(a.motorcycle_id, a.id), method: :delete, remote: true, class: 'delete-amount', confirm: '¿Esta seguro que desea eliminar la base?' %>
 					</td>
 					<td width="16">
-						<%= link_to image_tag("edit.png",size:"16x16"), '#', id: "edit-amount_#{a.id}" %>
+						<%= link_to image_tag("edit.png",size:"16x16"), '#', id: "edit-amount_#{a.id}", class: 'edit-amount' %>
 					</td>
 				<% else %>
 					<td width="16">

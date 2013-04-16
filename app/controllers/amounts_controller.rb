@@ -11,10 +11,11 @@ class AmountsController < ApplicationController
   		@amount = Amount.new(create_amount_parameters)
   		respond_to do |format|
 	  		if @amount.save
-	  			format.json{render json: @amount.to_json, status: :created}
-			else
-				format.json{render json: @amount.errors.to_json, status: :unprocessable_entity}
-			end
+	  			@amount.created_at = @amount.created_at.strftime('%d-%m-%Y %I:%M %p')
+          format.json{render json: @amount.to_json, status: :created}
+			  else
+				  format.json{render json: @amount.errors.to_json, status: :unprocessable_entity}
+			  end
 		end
 	end
   end
