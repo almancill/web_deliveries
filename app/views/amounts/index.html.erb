@@ -3,6 +3,7 @@
   <%= stylesheet_link_tag 'jquery-ui', :media => 'all' %>
   <%= javascript_include_tag 'jquery-ui' %>
   <%= javascript_include_tag 'amounts' %>
+  <%= javascript_include_tag 'date' %>
 <% end %>
 <div id="container">
 	<%= render 'shared/admin_login_info' %>
@@ -32,11 +33,11 @@
 		</div>
 		<div id='update-amount-form'>
 			<h2>Editar Base</h2>
-			<%= form_for @amount, url: '#' do |f| %>
-				<%= f.hidden_field :motorcycle_id %>
-				<%= f.text_field :money_amount, placeholder: 'Base' %>
+			<%= form_tag '#', method: :put, id: 'edit_amount' do |f| %>
+				<%= hidden_field_tag :motorcycle_id, @amount.motorcycle_id, id: 'edit_motorcycle_id', name: 'amount[motorcycle_id]' %>
+				<%= text_field_tag :money_amount, nil, placeholder: 'Base', id: 'edit_money_amount', name: 'amount[money_amount]' %>
 				<p>
-					<%= f.submit 'Crear', class: 'button' %>	
+					<%= submit_tag 'Crear', class: 'button' %>	
 				</p>
 			<% end %>
 		</div>
