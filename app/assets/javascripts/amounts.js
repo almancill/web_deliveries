@@ -29,7 +29,7 @@ $(document).ready(function(){
 	    modal: true,
 	    buttons: {
 	      'Editar Base': function() {
-	          alert('Entro!!!');
+	          edit_amount();
 	      }
 	    },
 	    close: function() {
@@ -69,7 +69,7 @@ $(document).ready(function(){
     });
 
     $('#edit_amount').submit(function(){
-      //edit_address();
+      edit_amount();
 
       return false;
     });
@@ -114,4 +114,22 @@ function new_amount(data, motorcycle_id){
     $('#amounts_list tbody').fadeIn(200, function(){
     	$(this).prepend(temp);
     });
+}
+
+function edit_amount(){
+  if ($('#edit_money_amount').val() != ''){
+      var motorcycle_id = $('#edit_motorcycle_id').val();
+      var amount_id = $('#amount_id').val();
+      $.ajax({
+        url: '/motorcycles/'+motorcycle_id+'/amounts/'+amount_id+'.json',
+        data: $('#edit_amount').serialize(),
+        type: 'PUT'
+      }).success(function(data){
+        $('#money-amount-value_'+amount_id).html(data.money_amount);
+        $('#edit_money_amount').val('');
+        $('#edit-amount-form').dialog('close');
+      }).error(function(data){
+
+      });
+  }
 }

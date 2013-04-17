@@ -21,7 +21,7 @@ class AmountsController < ApplicationController
 
   def update
   	if request.xhr?
-  		@amount = Amount.find(parameters['id'])
+  		@amount = Amount.find(params['id'])
   		respond_to do |format|
         	if @amount.update_attributes(update_amount_parameters)
 	          format.json {render json: @amount, status: :ok}
