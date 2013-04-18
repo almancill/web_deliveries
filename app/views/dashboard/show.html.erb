@@ -18,15 +18,15 @@
 		<% end %>
 		<h2>Acciones</h2>
 		<% if current_user.admin %>
-		  <p><%= link_to 'Crear Usuario del Sistema', new_user_path %><p>
+		  <p><%= link_to 'Crear Usuario del Sistema', :new_user %><p>
 		<% end %>
-		<p><%= link_to 'Crear Domicilio', new_delivery_path %><p>
+		<p><%= link_to 'Crear Domicilio', :new_delivery %><p>
 		<h2>Ver</h2>
 		<% if current_user.admin %>
-			<p><%= link_to 'Lista de Usuarios del Sistema', users_path %><p>
+			<p><%= link_to 'Lista de Usuarios del Sistema', :users %><p>
 		<% end %>
-		<p><%= link_to 'Lista de Domicilios', '#' %><p>
-		<p><%= link_to 'Lista de Clientes', '#' %></p>
+		<p><%= link_to 'Lista de Domicilios', :deliveries %><p>
+		<p><%= link_to 'Lista de Clientes', :customers %></p>
 		<h2>Configuración</h2>
 		<p><%= link_to 'Editar', edit_user_path(current_user) %><p>
 	</div>

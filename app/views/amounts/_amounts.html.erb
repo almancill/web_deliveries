@@ -23,7 +23,7 @@
 					</td>
 				<% else %>
 					<td width="16">
-						<%= link_to image_tag("edit.png",size:"16x16"), '#' %>
+						<%= link_to image_tag("edit.png",size:"16x16"), '#', id: "edit-amount_#{a.id}", class: 'edit-amount' %>
 					</td>
 				<% end %>
 				<td width="240" id="money-amount-value_<%= a.id %>" ><%= a.money_amount %></td>

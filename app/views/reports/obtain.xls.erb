@@ -33,4 +33,67 @@
       
     </Table>
   </Worksheet>
+  <% @motorcycles.each do |m| %>
+      <Worksheet ss:Name="<%=m.name %>">
+        <Table>
+          <Row>
+            <Cell><Data ss:Type="String">Informe del Día:</Data></Cell>
+            <Cell><Data ss:Type="String"><%= @date.join('-') %></Data></Cell>
+          </Row>
+          <Row>
+          </Row>
+          <Row>
+            <Cell><Data ss:Type="String">Nombre del Motociclista:</Data></Cell>
+            <Cell><Data ss:Type="String"><%= m.messenger_name %></Data></Cell>
+          </Row>
+          <Row>
+            <Cell><Data ss:Type="String">Nro. de Domicilios:</Data></Cell>
+            <Cell><Data ss:Type="Number"><%= m.daily_deliveries.count %></Data></Cell>
+          </Row>
+          <Row>
+            <Cell><Data ss:Type="String">Total Ingresos Domicilios:</Data></Cell>
+            <Cell><Data ss:Type="Number"><%= m.total_deliveries_income %></Data></Cell>
+          </Row>
+          <Row>
+            <Cell><Data ss:Type="String">Total Gastos Domicilios:</Data></Cell>
+            <Cell><Data ss:Type="Number"><%= m.total_deliveries_cost %></Data></Cell>
+          </Row>
+          <Row>
+            <Cell><Data ss:Type="String">Total Bases:</Data></Cell>
+            <Cell><Data ss:Type="Number"><%= m.total_daily_amounts %></Data></Cell>
+          </Row>
+          <Row>
+            <Cell><Data ss:Type="String">Descripción por Bases:</Data></Cell>
+          </Row>
+          <Row>
+            <Cell><Data ss:Type="String">Monto:</Data></Cell>
+            <Cell><Data ss:Type="String">Hora:</Data></Cell>
+          </Row>
+          <% m.daily_amounts.each do |a| %>
+            <Row>
+              <Cell><Data ss:Type="Number"><%= a.money_amount %></Data></Cell>
+              <Cell><Data ss:Type="String"><%= a.created_at.strftime('%I:%M %p')%></Data></Cell>
+            </Row>
+          <% end %>
+          
+          <Row>
+          </Row>
+          <Row>
+            <Cell><Data ss:Type="String">Descripción por Domicilios:</Data></Cell>
+          </Row>
+          <Row>
+            <Cell><Data ss:Type="String">Id:</Data></Cell>
+            <Cell><Data ss:Type="String">Costo del Servicio:</Data></Cell>
+            <Cell><Data ss:Type="String">Costo de la Factura del Servicio:</Data></Cell>
+          </Row>
+          <% m.daily_deliveries.each do |d| %>
+            <Row>
+              <Cell><Data ss:Type="Number"><%= d.id %></Data></Cell>
+              <Cell><Data ss:Type="Number"><%= d.delivery_cost %></Data></Cell>
+              <Cell><Data ss:Type="Number"><%= d.invoice_cost %></Data></Cell>
+            </Row>
+          <% end %>
+        </Table>
+      </Worksheet>
+  <% end %>
 </Workbook>
