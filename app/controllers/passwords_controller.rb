@@ -9,10 +9,10 @@ class PasswordsController < ApplicationController
   	@user = User.find(params[:user_id])
 
   	if @user.update_attributes(get_update_attributes)
-		redirect_to password_edit_path, notice: 'Contraseña Actualizada Satisfactoriamente'
-	else
-		render 'edit'
-	end
+  		redirect_to password_edit_path, notice: 'Contraseña Actualizada Satisfactoriamente'
+  	else
+  		render 'edit'
+  	end
   end
 
   private

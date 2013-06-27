@@ -116,5 +116,4 @@ class DeliveriesController < ApplicationController
   def update_customer
     params.require(:customer).permit(:id, :name, telephones_attributes: [:id, :number], addresses_attributes: [:id, :value, deliveries_attributes: [:id, :description, :motorcycle_id, :delivery_cost, :invoice_number, :invoice_cost]])
   end
-
 end

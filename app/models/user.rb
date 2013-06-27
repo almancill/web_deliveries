@@ -31,6 +31,5 @@ class User < ActiveRecord::Base
 
   def random_password
     self.password = SecureRandom.hex(5) if User.count >= 1
-    # self.password = 2 if User.count >= 1
   end
 end

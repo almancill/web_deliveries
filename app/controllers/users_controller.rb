@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  skip_before_filter :require_admin, only: [:edit, :update]
+  before_filter :require_user_type_1, only: []
 
   def index
     @users = User.paginate(per_page: 15, page: params[:page])
@@ -43,5 +43,12 @@ class UsersController < ApplicationController
 
   def update_user_params
     params.require(:user).permit(:name, :email)
+  end
+
+  def require_user_type_1
+    unless current_user.user_type == 1
+      redirect_to :root 
+      flash[:error] = "No tiene permisos para realizar esta accion"
+    end
   end
 end
