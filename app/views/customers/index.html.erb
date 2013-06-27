@@ -1,0 +1,28 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'customers', :media => 'all' %>	
+  <%= stylesheet_link_tag 'jquery-ui', :media => 'all' %>
+  <%= javascript_include_tag 'jquery-ui' %>
+  <%= javascript_include_tag 'jquery-validate' %>
+  <%= javascript_include_tag 'customers' %>
+<% end %>
+<div id="container">
+	<%= render 'shared/admin_login_info' %>
+	<div id="header">
+		<%= render 'shared/admin_header' %>
+	</div>
+	<div id="navcontainer">
+		<%= render 'shared/admin_menu', page: 1 %>
+	</div>
+
+	<div id="content">
+		<% if flash[:notice]%>
+			<p class="done"> <%= flash[:notice]%></p>
+		<% end %>
+		<%= form_tag('#') do %>
+			<p><%= link_to 'Nuevo Cliente', new_customer_path, class: "button"%></p>
+		<% end %>
+		<div id="customers">
+			<%= render 'customers' %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,22 @@
+<table width="870" border="0" align="center" cellpadding="5" cellspacing="0" id='telephones_table'>
+	<thead>
+		<tr>
+			<th width="16" scope="col">&nbsp;</th>
+			<th width="16" scope="col">&nbsp;</th>
+			<th width="240" scope="col">Número</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @telephones.each do |t| %>
+			<tr class='item_list' >
+				<td width="16">
+					<%= link_to image_tag("edit.png",size:"16x16"), '#', class: 'edit-telephone', id: 'edit-telephone_'+t.id.to_s %>
+				</td>
+				<td width="16">
+					<%= link_to image_tag("delete.png",size:"16x16"), t, method: :delete, remote: true, class: 'delete-telephone', confirm: '¿Esta seguro que desea eliminar el número?'  %>
+				</td>
+				<td width="240" id="number_<%= t.id %>"><%= t.number %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

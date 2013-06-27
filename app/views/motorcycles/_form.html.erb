@@ -1,0 +1,29 @@
+<%= form_for @motorcycle do |m| %>
+	<p>
+		<%= m.label :name, 'Nombre de la Moto:' %>
+		<%= m.text_field :name %>
+		<% if @motorcycle.errors[:name] %>
+			<br>
+			<%= @motorcycle.errors[:name].first %>
+		<% end %>
+	</p>
+	<p>
+		<%= m.label :messenger_name, 'Nombre del Mensajero:' %>
+		<%= m.text_field :messenger_name %>
+		<% if @motorcycle.errors[:messenger_name] %>
+			<br>
+			<%= @motorcycle.errors[:messenger_name].first %>
+		<% end %>
+	</p>
+	<p>
+		<%= m.label :description, 'Descripción:' %>
+		<%= m.text_area :description, size: '33x10' %>
+		<% if @motorcycle.errors[:description] %>
+			<br>
+			<%= @motorcycle.errors[:description].first %>
+		<% end %>
+	</p>
+	<p>
+		<%= m.submit 'Guardar' %>
+	</p>
+<% end %>

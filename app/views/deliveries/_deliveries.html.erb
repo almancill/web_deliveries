@@ -1,0 +1,28 @@
+<table width="870" border="0" align="center" cellpadding="5" cellspacing="0" id='deliveries_table'>
+	<thead>
+		<tr>
+			<th width="16" scope="col">&nbsp;</th>
+			<th width="16" scope="col">&nbsp;</th>
+			<th width="120" scope="col">Id</th>
+			<th width="240" scope="col">Cliente</th>
+			<th width="240" scope="col">Dirección</th>
+			<th width="240" scope="col">Costo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @deliveries.each do |d| %>
+			<tr class='item_list' >
+				<td width="16">
+					<%= link_to image_tag("view.png",size:"16x16"), delivery_path(d, format: 'pdf') %>
+				</td>
+				<td width="16">
+					<%= link_to image_tag("edit.png",size:"16x16"), edit_delivery_path(d) %>
+				</td>
+				<td width='120'><%= d.id %></td>
+				<td width="240"><%= link_to d.address.customer.name, customer_path(d.address.customer) %></td>
+				<td width="240"><%= link_to d.address.value, customer_address_deliveries_path(id: d.address.customer.id.to_s, address_id: d.address.id.to_s) %></td>
+				<td width="240"><%= d.delivery_cost %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

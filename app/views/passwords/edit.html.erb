@@ -1,0 +1,37 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'passwords', :media => 'all' %>	
+  <%= javascript_include_tag 'passwords' %>
+<% end %>
+
+<div id="container">
+	<%= render 'shared/admin_login_info' %>
+	<div id="header">
+		<%= render 'shared/admin_header' %>
+	</div>
+	<div id="navcontainer">
+		<%= render 'shared/admin_menu', page: 6 %>
+	</div>
+
+	<div id="content">
+		<% if flash[:notice]%>
+			<p class="done"> <%= flash[:notice]%></p>
+		<% end %>
+		<h2>Cambiar Contraseña</h2>
+		<%= form_for @user, url: password_update_path(@user) do |f| %>
+			<p>
+				<%= f.label :password, 'Nueva Contraseña:' %>
+				<%= f.password_field :password %>
+				<% if @user.errors[:password] %>
+					<%= @user.errors[:password] .first%>
+				<% end %>
+			</p>
+			<p>
+				<%= f.label :password_confirmation, 'Confirmar Nueva Contraseña:' %>
+				<%= f.password_field :password_confirmation %>
+			</p>
+			<p>
+				<%= f.submit 'Cambiar Contraseña' %>
+			</p>
+		<% end %>
+	</div>
+</div>

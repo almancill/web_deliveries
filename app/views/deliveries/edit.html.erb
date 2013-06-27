@@ -1,0 +1,77 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'deliveries', :media => 'all' %>	
+  <%= stylesheet_link_tag 'jquery-ui', :media => 'all' %>
+  <%= javascript_include_tag 'jquery-ui' %>
+  <%= javascript_include_tag 'jquery-validate' %>
+  <%= javascript_include_tag 'deliveries' %>
+<% end %>
+
+<div id="container">
+	<%= render 'shared/admin_login_info' %>
+	<div id="header">
+		<%= render 'shared/admin_header' %>
+	</div>
+	<div id="navcontainer">
+		<%= render 'shared/admin_menu', page: 2 %>
+	</div>
+
+	<div id="content">
+		<% if flash[:notice]%>
+			<p class="done"> <%= flash[:notice]%></p>
+		<% end %>
+		<h3> Editar Domicilio</h3>
+		<h2>Información del Domicilio</h2>
+		<%= form_for @customer, url: '/deliveries/'+@delivery.id.to_s, method: 'PUT' do |c| %>
+			<p>
+				<%= c.hidden_field :id %>
+				<%= c.label :name, 'Nombre:' %>
+				<%= c.text_field :name %>
+			</p>
+			
+				<%= c.fields_for :telephones do |t| %>
+					<p>
+						<%= t.hidden_field :id %>
+						<%= t.label :number, 'Teléfono:' %>
+						<%= t.text_field :number, size: 60 %>
+					</p>
+				<% end %>
+			
+				<%= c.fields_for :addresses do |a| %>
+					<p>
+						<%= a.hidden_field :id %>
+						<%= a.label :value, 'Dirección:' %>
+						<%= a.text_field :value, size: 60 %>
+					</p>		
+						<%= a.fields_for :deliveries, @delivery do |d| %>
+							<% if @cont == 0%>
+								<p>
+									<%= d.hidden_field :id %>
+									<%= d.label :description, 'Descripción del Domicilio:' %>
+									<%= d.text_area :description, size: '68x10' %>
+								</p>
+								<p>
+									<%= d.label :motorcycle_id, 'Motocicleta:' %>
+									<%= d.collection_select(:motorcycle_id, Motorcycle.all, :id, :name) %>
+								</p>
+								<p>
+									<%= d.label :delivery_cost, 'Total:' %>
+									<%= d.text_field :delivery_cost, size: 30 %>
+								</p>
+								<p>
+									<%= d.label :invoice_number, 'Nro. de Factura:' %>
+									<%= d.text_field :invoice_number %>
+								</p>
+								<p>
+									<%= d.label :invoice_cost, 'Costo de Factura:' %>
+									<%= d.text_field :invoice_cost %>
+								</p>
+								<% @cont = @cont + 1 %>
+							<% end %>
+						<% end %>
+				<% end %>
+			<p>
+				<%= c.submit 'Actualizar Domicilio' %>
+			</p>
+		<% end %>
+	</div>
+</div>

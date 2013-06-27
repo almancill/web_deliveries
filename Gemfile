@@ -10,6 +10,8 @@ group :development do
   gem 'quiet_assets'
   gem 'debugger'
   gem 'thin'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :production do
@@ -32,3 +34,6 @@ gem 'rails-i18n'
 gem 'sorcery'
 gem 'strong_parameters'
 gem 'less-rails-bootstrap'
+gem 'will_paginate', '~> 3.0.3'
+gem 'prawn', '~> 0.12.0'
+gem 'prawnto', '~> 0.1.1'

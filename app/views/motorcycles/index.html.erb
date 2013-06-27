@@ -1,0 +1,24 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'motorcycles', :media => 'all' %>	
+  <%= javascript_include_tag 'motorcycles' %>
+ <% end %>
+<div id="container">
+	<%= render 'shared/admin_login_info' %>
+	<div id="header">
+		<%= render 'shared/admin_header' %>
+	</div>
+	<div id="navcontainer">
+		<%= render 'shared/admin_menu', page: 5 %>
+	</div>
+
+	<div id="content">
+		<% if flash[:notice]%>
+			<p class="done"> <%= flash[:notice]%></p>
+		<% end %>
+		<h2>Motocicletas</h2>
+		<%= button_tag 'Nueva Motocicleta', type: 'button', id: 'new-motorcycle-button', class: 'button' %>
+		<div id='motorcycles'>
+			<%= render 'motorcycles' %>
+		</div>
+	</div>
+</div>

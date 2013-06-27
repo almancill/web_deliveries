@@ -1,0 +1,49 @@
+<ul>
+	<% if page == 0 %> 
+		<li><%= link_to 'Inicio', :root, id: 'current' %></li>
+	<% else %>
+		<li><%= link_to 'Inicio', :root %></li>
+	<% end %> 
+	
+	<% if page == 1 %>
+		<li><%= link_to 'Clientes', :customers, id: 'current' %></li>
+	<% else %>
+		<li><%= link_to 'Clientes', :customers %></li>
+	<% end %>
+
+	<% if page == 2 %>
+		<li><%= link_to 'Domicilios', :deliveries, id: 'current' %></li>
+	<% else %>
+		<li><%= link_to 'Domicilios', :deliveries %></li>
+	<% end %>			
+	
+	<% if current_user.admin %>
+		<% if page == 3 %>
+			<li><%= link_to 'Usuarios del Sistema', :users, id: 'current' %></li>
+		<% else %>
+			<li><%= link_to 'Usuarios del Sistema', :users %></li>
+		<% end %>
+		
+		<% if page == 4 %>
+			<li><%= link_to 'Reportes', :reports, id: 'current' %></li>
+		<% else %>
+			<li><%= link_to 'Reportes', :reports %></li>
+		<% end %>
+		<% if page == 5 %>
+			<li><%= link_to 'Motocicletas', :motorcycles, id: 'current' %></li>
+		<% else %>
+			<li><%= link_to 'Motocicletas', :motorcycles %></li>
+		<% end %>
+	<% else %>
+		<% if page == 3 %>
+			<li><%= link_to 'Mi Usuario', edit_user_path(current_user), id: 'current' %></li>
+		<% else %>
+			<li><%= link_to 'Mi Usuario', edit_user_path(current_user) %></li>
+		<% end %>
+	<% end %>
+	<% if page == 6 %>
+		<li><%= link_to 'Cambiar Contraseña', password_edit_path, id: 'current' %></li>
+	<% else %>
+		<li><%= link_to 'Cambiar Contraseña', password_edit_path %></li>
+	<% end %>
+</ul>

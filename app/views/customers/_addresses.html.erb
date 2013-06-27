@@ -1,0 +1,18 @@
+<table width="870" border="0" align="center" cellpadding="5" cellspacing="0" id='addresses_table'>
+	<thead>
+		<tr>
+			<th width="16" scope="col">&nbsp;</th>
+			<th width="240" scope="col">Dirección</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @addresses.each do |t| %>
+			<tr class='item_list' >
+				<td width="16">
+					<%= link_to image_tag("edit_address.png",size:"16x16"), '#', class: 'edit-address', id: 'edit-address_'+t.id.to_s %>
+				</td>
+				<td width="240" id="value_<%= t.id %>"><%= link_to t.value, customer_address_deliveries_path(id: t.customer.id, address_id: t.id.to_s) %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

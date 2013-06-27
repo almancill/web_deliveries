@@ -1,0 +1,73 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'customers', :media => 'all' %>	
+  <%= stylesheet_link_tag 'jquery-ui', :media => 'all' %>
+  <%= javascript_include_tag 'jquery-ui' %>
+  <%= javascript_include_tag 'jquery-validate' %>
+  <%= javascript_include_tag 'customers' %>
+<% end %>
+
+<div id="container">
+	<%= render 'shared/admin_login_info' %>
+	<div id="header">
+		<%= render 'shared/admin_header' %>
+	</div>
+	<div id="navcontainer">
+		<%= render 'shared/admin_menu', page: 1 %>
+	</div>
+
+	<div id="content">
+		<% if flash[:notice]%>
+			<p class="done"> <%= flash[:notice]%></p>
+		<% end %>
+		<h1>Información del Cliente</h1>
+		
+		<h2>Nombre del Cliente</h2>
+		<h3><%= @customer.name %></h3>
+		
+		<h2>Email del Cliente</h2>
+		<h3><%= @customer.email %></h3>
+
+		<%= button_tag 'Agregar Teléfono', type: 'button', id: 'add-telephone-button', class: 'button' %>
+		<div id='telephones'>
+			<%= render 'telephones' %>
+		</div>
+
+		<%= button_tag 'Agregar Dirección', type: 'button', id: 'add-address-button', class: 'button' %>
+
+		<div id='addresses'>
+			<%= render 'addresses' %>
+		</div>
+
+		<div id='new-telephone-form' class='hide'>
+			<h2>Nuevo Teléfono</h2>
+			<%= form_for @telephone do |f| %>
+				<%= f.hidden_field :customer_id %>
+				<%= f.text_field :number, placeholder: 'Número Telefónico' %>
+			<% end %>
+		</div>
+
+		<div id='edit-telephone-form' class='hide'>
+			<h2>Editar Teléfono</h2>
+			<%= form_tag '/telephones', id: 'edit_telephone', method: :put do %>
+				<%= hidden_field_tag 'edit_telephone[id]', '' %>
+				<%= text_field_tag 'edit_telephone[number]' %>
+			<% end %>
+		</div>
+
+		<div id='new-address-form' class='hide'>
+			<h2>Nueva Dirección</h2>
+			<%= form_for @address do |f| %>
+				<%= f.hidden_field :customer_id %>
+				<%= f.text_field :value, placeholder: 'Dirección' %>
+			<% end %>	
+		</div>
+
+		<div id='edit-address-form' class='hide'>
+			<h2>Editar Dirección</h2>
+			<%= form_tag '/addresses', id: 'edit_address', method: :put do %>
+				<%= hidden_field_tag 'edit_address[id]' %>
+				<%= text_field_tag 'edit_address[value]' %>
+			<% end %>
+		</div>		
+	</div>
+</div>

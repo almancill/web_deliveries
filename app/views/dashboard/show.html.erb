@@ -1,19 +1,33 @@
-<h1>Dashboard</h1>
-<p><%= "Bienvenido, #{current_user.name}" %><p>
-<% if flash[:error] %>
-  <p><%= flash[:error] %><p>
-<% end %>
-<% if flash[:notice] %>
-  <p><%= flash[:notice] %><p>
-<% end %>
-<h2>Acciones</h2>
-<% if current_user.admin %>
-  <p><%= link_to 'Crear usuario', new_user_path %><p>
-<% end %>
-<p><%= link_to 'Crear domicilio', '#' %><p>
-<h2>Ver</h2>
-<p><%= link_to 'Lista usuarios', users_path %><p>
-<p><%= link_to 'Lista domicilios', '#' %><p>
-<h2>Configuracion</h2>
-<p><%= link_to 'editar', edit_user_path(current_user) %><p>
-<p><%= link_to 'logout', :logout, method: :delete %><p>
+<div id="container">
+	<%= render 'shared/admin_login_info' %>
+	<div id="header">
+		<%= render 'shared/admin_header' %>
+	</div>
+	<div id="navcontainer">
+		<%= render 'shared/admin_menu', page: 0 %>
+	</div>
+
+	<div id="content">
+		<h1>Dashboard</h1>
+		<p><%= "Bienvenido, #{current_user.name}" %><p>
+		<% if flash[:error] %>
+		  <p><%= flash[:error] %><p>
+		<% end %>
+		<% if flash[:notice] %>
+		  <p><%= flash[:notice] %><p>
+		<% end %>
+		<h2>Acciones</h2>
+		<% if current_user.admin %>
+		  <p><%= link_to 'Crear Usuario del Sistema', :new_user %><p>
+		<% end %>
+		<p><%= link_to 'Crear Domicilio', :new_delivery %><p>
+		<h2>Ver</h2>
+		<% if current_user.admin %>
+			<p><%= link_to 'Lista de Usuarios del Sistema', :users %><p>
+		<% end %>
+		<p><%= link_to 'Lista de Domicilios', :deliveries %><p>
+		<p><%= link_to 'Lista de Clientes', :customers %></p>
+		<h2>Configuración</h2>
+		<p><%= link_to 'Editar', edit_user_path(current_user) %><p>
+	</div>
+</div>

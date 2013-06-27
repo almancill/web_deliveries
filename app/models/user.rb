@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  default_scope {order('id ASC')}
+
   #Accessors (Virtual attributes)
   attr_accessor :password, :password_confirmation
 
@@ -29,6 +31,5 @@ class User < ActiveRecord::Base
 
   def random_password
     self.password = SecureRandom.hex(5) if User.count >= 1
-    # self.password = 2 if User.count >= 1
   end
 end
