@@ -12,8 +12,14 @@ class Motorcycle < ActiveRecord::Base
 
 	def setting_daily_attrs(date)
 		date = date.split('-')
-		self.daily_amounts = self.amounts.where("STRFTIME('%d', created_at) = ? AND STRFTIME('%m', created_at) = ? AND STRFTIME('%Y', created_at) = ?", date[0], date[1], date[2])
-		self.daily_deliveries = self.deliveries.where("STRFTIME('%d', created_at) = ? AND STRFTIME('%m', created_at) = ? AND STRFTIME('%Y', created_at) = ?", date[0], date[1], date[2]) 
+		
+		#For Use in Production Environment
+		self.daily_amounts = self.amounts.where("to_char(created_at,'%d') = ? AND to_char(created_at,'%m') = ? AND to_char(created_at,'%Y') = ?", date[0], date[1], date[2])
+		self.daily_deliveries = self.deliveries.where("to_char(created_at,'%d') = ? AND to_char(created_at,'%m') = ? AND to_char(created_at,'%Y') = ?", date[0], date[1], date[2]) 
+		
+		#For Use in Development Environment
+		#self.daily_amounts = self.amounts.where("STRFTIME('%d', created_at) = ? AND STRFTIME('%m', created_at) = ? AND STRFTIME('%Y', created_at) = ?", date[0], date[1], date[2])
+		#self.daily_deliveries = self.deliveries.where("STRFTIME('%d', created_at) = ? AND STRFTIME('%m', created_at) = ? AND STRFTIME('%Y', created_at) = ?", date[0], date[1], date[2])
 	end
 
 	def total_deliveries_income
