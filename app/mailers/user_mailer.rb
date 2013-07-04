@@ -7,6 +7,7 @@ class UserMailer < ActionMailer::Base
   #   en.user_mailer.sign_up.subject
   #
   def sign_up(user)
+    headers(:content_type => "text/html", :charset => "UTF-8")
     @user = user
     mail(to: user.email, subject: 'Credenciales del Usuario')
   end
