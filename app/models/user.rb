@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def random_password
-    self.password = SecureRandom.hex(5) if User.count >= 1
+    #self.password = SecureRandom.hex(5) if User.count >= 1
+    self.password = '123456'
   end
 end

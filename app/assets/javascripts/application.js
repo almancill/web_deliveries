@@ -12,3 +12,20 @@
 //
 //= require jquery
 //= require jquery_ujs
+
+var app_name = '';
+var app_port = '';
+
+function url_formatted(){
+	if (app_name == '' && app_port == ''){
+		return '';
+  }else{
+  	if (app_name != '' && app_port != ''){
+  		return app_name + ':' + app_port;
+  	}else{
+  		if (app_name != ''){
+  			return app_name;
+  		}
+  	}
+  }
+}

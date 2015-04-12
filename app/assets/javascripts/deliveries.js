@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$('#new-delivery-button').click(function(){
-		window.location = '/deliveries/new';
+		window.location = url_formatted()+'/deliveries/new';
 	});
 
 	$('#selectable-customers').selectable({
@@ -14,7 +14,7 @@ $(document).ready(function(){
 						$('#customer_telephones_attributes_0_number').val($('#telephone_number').val());
 					}
 					$('#telephone_number').val('');
-					$.get('/customer/'+id+'/addresses',function(data){
+					$.get(url_formatted()+'/customer/'+id+'/addresses',function(data){
 						var i, temp;
 						temp = '';
 
@@ -43,7 +43,7 @@ $(document).ready(function(){
 	});
 	$(document).on('keypress', '#telephone_number', function(evt){
 		if(evt.which == 13){
-			$.get('/deliveries/search/'+$(this).val(), function(data){
+			$.get(url_formatted()+'/deliveries/search/'+$(this).val(), function(data){
 				var i, temp;
 				temp = '';
 				$('#selectable-customers').fadeOut('500', function(){
